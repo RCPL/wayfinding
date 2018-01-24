@@ -1,5 +1,6 @@
 <template>
 	<main>
+		<Clock/>
 		<div style="padding:70px; flex:1">
 			<img src="../static/img/logo-md.svg">
 			<EventList/>
@@ -13,13 +14,15 @@
   // import Spaces from './components/Spaces'
 	import UnderConstruction from './components/UnderConstruction'
 	import EventList from './components/EventList'
+	import Clock from './components/Clock'
 
   export default {
 		name: 'App',
     components: {
       // FloorMaps
 			UnderConstruction,
-			EventList
+			EventList,
+			Clock
       // Spaces
     }
   }

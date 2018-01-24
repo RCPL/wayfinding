@@ -3,6 +3,7 @@
     <section v-for="event in events" :key="event.id">
       <h2>{{event.title}}</h2>
       <h3>2:30 til 4:00 pm</h3>
+      <h3>{{event.space}}</h3>
       <p>{{event.description}}</p>
     </section>
   </div>
