@@ -1,0 +1,3 @@
+[submodule "static/variable-fonts"]
+	path = static/variable-fonts
+	url = https://github.com/Monotype/Monotype_prototype_variable_fonts.git
