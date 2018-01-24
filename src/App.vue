@@ -1,23 +1,24 @@
 <template>
 	<div style="padding:70px">
 		<img src="../static/img/logo-md.svg">
-		<h1>An update for this screen is in progress.</h1>
-		<hr>
-		<h2>Events Today on the 3rd floor</h2>
-		<p>2:30pm<br>
-			<strong>Basic Résumé Help with Career Coaches for adults</strong></p>
-    <Spaces />
+		<EventList/>
+		<UnderConstruction/>
 	</div>
 </template>
 
-<script type="text/babel">
+<script>
   // import FloorMaps from './components/FloorMaps'
-  import Spaces from './components/Spaces'
+  // import Spaces from './components/Spaces'
+	import UnderConstruction from './components/UnderConstruction'
+	import EventList from './components/EventList'
 
   export default {
-    componenets: {
-      // FloorMaps,
-      Spaces
+		name: 'App',
+    components: {
+      // FloorMaps
+			UnderConstruction,
+			EventList
+      // Spaces
     }
   }
 
