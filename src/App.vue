@@ -1,6 +1,7 @@
 <template>
-	<div>
-		<h1 style="padding:100px">An update for this screen is in progress.</h1>
+	<div style="padding:100px">
+		<img src="../static/img/logo-md.svg">
+		<h1 >An update for this screen is in progress.</h1>
     <Spaces />
 	</div>
 </template>
