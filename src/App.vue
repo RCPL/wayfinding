@@ -1,9 +1,11 @@
 <template>
-	<div style="padding:70px">
-		<img src="../static/img/logo-md.svg">
-		<EventList/>
+	<main>
+		<div style="padding:70px; flex:1">
+			<img src="../static/img/logo-md.svg">
+			<EventList/>
+		</div>
 		<UnderConstruction/>
-	</div>
+	</main>
 </template>
 
 <script>
@@ -38,6 +40,7 @@
 	}
 
 	body{
+		margin:0;
 		font-family: "Avenir Next Variable", Helvetica, Arial, sans-serif;
 		color: rgb(0, 0, 0);
 		font-size:40px;
@@ -56,7 +59,9 @@
     font-variation-settings: 'wght' 631.164, 'wdth' 188.6799;
 	}
 	
-	#app {
-		
+	main{
+		height:100vh;
+		display:flex;
+		flex-direction: column;
 	}
 </style>
