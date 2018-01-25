@@ -10,7 +10,7 @@
     name:'Clock',
     computed: {
       currentTime: () => {
-        return moment().format('h:MMa dddd MMMM DD ');
+        return moment().format('h:mma dddd MMMM DD ');
       }
     }
   }
