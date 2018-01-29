@@ -27,7 +27,7 @@
     }
   }
 
-  setTimeout("location.reload(true);",120000);
+  setTimeout("location.reload(true);",5*60*1000); 
 </script>
 
 <style lang="scss">

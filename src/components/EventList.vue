@@ -1,17 +1,18 @@
 <template>
   <div>
-    <code>{{events}}</code>
+
     <section v-for="event in events" :key="event.id._text">
-      <h2>{{event.title._text}}</h2>
-      <h3>2:30 til 4:00 pm</h3>
-      <h3>{{event.space}}</h3>
-      <!-- <p>{{event.description}}</p> -->
+      <h2>{{event.title[0]}}</h2>
+
+      <h3>{{event.time[0]}} til {{event.endtime[0]}}</h3>
+      <!-- <h3>{{event.space}}</h3> -->
+      <!-- <p>{{event.library[0]}}</p> -->
     </section>
   </div>
 </template>
 
 <script>
-  // var parseString = require('xml-js').parseString
+  import _ from 'underscore'
   import xml2js from 'xml2js'
   async function getList() {
     // https://stackoverflow.com/a/41009103
@@ -20,17 +21,18 @@
     .then(response => response.text())
 
     const options = {trim:true, explicitArray:false, emptyTag:undefined}
-    let obj = {}
+    let eventArray = {}
     xml2js.parseString(xmlString, (error,result) => {
       if(error){
         console.error('OMG',error);
       }else{
-        obj = result
+        eventArray = result.event.item
       }
     })
 
-    console.log('result',obj)
-    return obj
+    eventArray = _.filter(eventArray, event => event.library[0] == "Richland Library  Main ")
+
+    return eventArray
   }
 
   export default {
@@ -42,8 +44,9 @@
     },
     methods: {
       saveList: function() {
-        getList().then((obj) => {
-          this.events = obj.event.item
+        getList().then((newList) => {
+          this.events = newList
+          console.log(newList);
         })
       }
     },
@@ -52,31 +55,6 @@
     }
   }
 
-/*
-
-methods: {
-    getCardList: function() {
-      listRecords(`${airtableURL}?api_key=${airtableKey}`)
-      .then((records) => {
-        cardList = records;
-      });
-    },
-    buildHand: function(){
-      console.log('card list', cardList);
-      let cursor = Math.floor(Math.random()*(cardList.length - cardsPerHand - 1))
-      this.cards = cardList.splice(cursor,cardsPerHand);
-    },
-    getCard: function(id) {
-      getRecord(`${airtableURL}/${id}?api_key=${airtableKey}`)
-      .then((record) => {
-        console.log('ze card',record);
-      });
-    }
-  },
-  mounted: function() {
-    this.getCardList();
-  }
-*/
 </script>
 
 <style lang="scss" scoped>
