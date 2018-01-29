@@ -16,7 +16,7 @@
   import xml2js from 'xml2js'
   async function getList() {
     // https://stackoverflow.com/a/41009103
-    const url = 'http://host6.evanced.info/richland/evanced/eventsxml.asp?lib=all&nd=1&alltime=1&dm=exml'
+    const url = 'https://host6.evanced.info/richland/evanced/eventsxml.asp?lib=all&nd=1&alltime=1&dm=exml'
     let xmlString = await fetch(url)
     .then(response => response.text())
 
