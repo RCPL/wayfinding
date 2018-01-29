@@ -2,11 +2,14 @@
   "name": "vue-template",
   "description": null,
   "version": "0.0.0",
+  "repository": "https://github.com/RCPL/wayfinding",
+  "license": "GPL-3.0",
   "dependencies": {
     "vue": "^2.5.13",
     "vue-router": "^3.0.1",
     "moment": "^2.20.1",
-    "xml-js": "^1.6.2"
+    "xml2js": "*",
+    "underscore": "*"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
@@ -69,7 +72,7 @@
     "ts-loader": "^2.3.3",
     "url-loader": "^0.5.8",
     "vue-loader": "^12.1.0",
-    "vue-style-loader": "^3.0.1",
+    "vue-style-loader": "^3.1.1",
     "vue-template-compiler": "^2.5.13",
     "webpack": "^2.6.1",
     "webpack-bundle-analyzer": "^2.2.1",
