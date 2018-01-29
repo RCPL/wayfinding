@@ -5,7 +5,8 @@
   "dependencies": {
     "vue": "^2.5.13",
     "vue-router": "^3.0.1",
-    "moment": "*"
+    "moment": "^2.20.1",
+    "xml-js": "^1.6.2"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
