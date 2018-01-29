@@ -1,8 +1,6 @@
 <template>
   <section>
-    <p>a wild map appears</p>
-    
-    <img src="../assets/floor-2.png">
+    <img src="/static/img/floor-2.png">
   </section>
 </template>
 

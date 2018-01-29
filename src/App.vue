@@ -1,16 +1,18 @@
 <template>
 	<main>
+		
+		
+		<FloorMaps/>
 		<Clock/>
-		<div style="padding:70px; flex:1">
-			<img src="../static/img/logo-md.svg">
-			<EventList/>
-		</div>
+		<!-- <img src="../static/img/logo-md.svg"> -->
+		<EventList style="padding:70px; flex:1"/>
+		
 		<UnderConstruction/>
 	</main>
 </template>
 
 <script>
-  // import FloorMaps from './components/FloorMaps'
+  import FloorMaps from './components/FloorMaps'
   // import Spaces from './components/Spaces'
 	import UnderConstruction from './components/UnderConstruction'
 	import EventList from './components/EventList'
@@ -19,7 +21,7 @@
   export default {
 		name: 'App',
     components: {
-      // FloorMaps
+      FloorMaps,
 			UnderConstruction,
 			EventList,
 			Clock
