@@ -20,8 +20,10 @@
 
 <style lang="scss" scoped>
   section {
+    min-height:620px;
     display:flex;
     flex-direction: row;
+    overflow-y: scroll;
   }
   img {
     width: 100%;
