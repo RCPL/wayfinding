@@ -29,7 +29,7 @@
     }
   }
 
-  setTimeout("location.reload(true);",5*60*1000); 
+  setTimeout("location.reload(true);",15*60*1000); 
 </script>
 
 <style lang="scss">
