@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="eventList">
     <section v-for="event in events" :key="event.id" class="eventItem">
       <div class="times">
         <h2 class="big">{{event.time}}</h2>
@@ -77,6 +77,9 @@
 </script>
 
 <style lang="scss" scoped>
+  .eventList{
+    overflow-y: scroll;
+  }
   .eventItem{
     display:flex;
     flex-direction: row;

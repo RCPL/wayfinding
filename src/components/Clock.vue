@@ -1,14 +1,17 @@
 <template>
   <section>
-    <time>{{currentTime}}</time>
-    <date>{{currentDate}}</date>
+    <span>{{currentTime}}</span>
+    <span>{{currentDate}}</span>
+    <Weather/>
   </section>
 </template>
 
 <script>
   import moment from 'moment'
+  import Weather from './Weather'
   export default {
     name:'Clock',
+    components: {Weather},
     computed: {
       currentTime: () => moment().format('h:mma'),
       currentDate: () => moment().format('dddd MMMM DD')

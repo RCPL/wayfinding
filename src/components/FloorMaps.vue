@@ -1,11 +1,11 @@
 <template>
   <section>
-    <nav>
+    <!-- <nav>
       <a>3</a>
       <a>2</a>
       <a>1</a>
       <a>G</a>
-    </nav>
+    </nav> -->
     <div id="scrollable">
       <img src="/static/img/floor-3.png">
     </div>
