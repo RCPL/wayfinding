@@ -1,18 +1,16 @@
 <template>
   <section>
-    Weather!
-    <time>{{}}</time>
-    
+    <span>{{weather}}</span>
   </section>
 </template>
 
 <script>
   async function getWeather() {
-    const url = 'https://api.darksky.net/forecast/58ba66075ea2fd57dc18510a24007ca9/37.8267,-122.4233'
+    const url = 'https://api.darksky.net/forecast/58ba66075ea2fd57dc18510a24007ca9/34.004625,-81.037160'
     const jsonData = await fetch(url)
-    // .then(response => response.json())
+    .then(response => response.json())
 
-    console.log(jsonData)
+    console.log('jsonData',jsonData)
 
     return jsonData
   }
@@ -22,7 +20,7 @@
     name:'Weather',
     data() {
       return {
-        weather: {}
+        weather: '74F'
       }
     },
     computed: {
@@ -33,7 +31,7 @@
       // getWeather();
       // this.weather = getWeather();
       // console.log('weather',this.weather)
-      this.updateWeather();
+      // this.updateWeather();
     },
     methods: {
       updateWeather() {

@@ -2,7 +2,8 @@
 	<main>
 		
 		
-		<FloorMaps/>
+		<!-- <FloorMaps/> -->
+		<Map/>
 		<Clock/>
 		<!-- <img src="../static/img/logo-md.svg"> -->
 		<EventList style="padding:70px; flex:1"/>
@@ -17,6 +18,7 @@
 	import UnderConstruction from './components/UnderConstruction'
 	import EventList from './components/EventList'
 	import Clock from './components/Clock'
+	import Map from './components/Map'
 
   export default {
 		name: 'App',
@@ -24,7 +26,8 @@
       FloorMaps,
 			UnderConstruction,
 			EventList,
-			Clock
+			Clock,
+			Map
       // Spaces
     }
   }
