@@ -1,14 +1,13 @@
 <template>
 	<main>
-		
-		
+
 		<!-- <FloorMaps/> -->
 		<Map/>
 		<Clock/>
 		<!-- <img src="../static/img/logo-md.svg"> -->
-		<EventList style="padding:70px; flex:1"/>
+		<EventList style="padding:5vw; flex:1"/>
 		
-		<UnderConstruction/>
+		<!-- <UnderConstruction/> -->
 	</main>
 </template>
 
@@ -32,13 +31,12 @@
     }
   }
 
-  setTimeout("location.reload(true);",15*60*1000); 
+  // setTimeout("location.reload(true);",15*60*1000); 
 </script>
 
 <style lang="scss">
 	*{
 		font-family:inherit;
-		font-size:inherit;
 		color:inherit;
 	}
 
@@ -51,20 +49,23 @@
 		margin:0;
 		font-family: "Avenir Next Variable", Helvetica, Arial, sans-serif;
 		color: rgb(0, 0, 0);
-		font-size:40px;
+		font-size: 3vmin;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 	}
 
 	h1{
-		font-size:200%;
+		font-size:4rem;
 		font-weight:600;
     font-variation-settings: 'wght' 631.164, 'wdth' 188.6799;
 	}
 	h2{
-		font-size:150%;
+		font-size:3rem;
 		font-weight:600;
     font-variation-settings: 'wght' 631.164, 'wdth' 188.6799;
+	}
+	h3{
+		font-size:2rem;
 	}
 	
 	main{

@@ -35,21 +35,33 @@
     })
 
     // just main
-    eventArray =  _.where(eventArray, {library: "Richland Library  Main"})
+    eventArray = eventArray.filter(event => event.library === "Richland Library  Main")
 
     // clean the data so that it's actually useful
     _.each(eventArray, eventItem => {
       if(eventItem.time === "All Day"){
-        eventItem.iso_start = moment(new Date(eventItem.date)).startOf('day')._d;
-        eventItem.iso_end = moment(new Date(eventItem.date)).endOf('day')._d;
+        // set start and end times for all day events to standard room hours 9am-8:45pm
+        eventItem.iso_start = moment(new Date(eventItem.date)).set({hour: 9, minute:0})._d;
+        eventItem.iso_end = moment(new Date(eventItem.date)).set({hour: 20, minute:45})._d;
       }else{
         eventItem.iso_start = new Date(eventItem.date + ' ' + eventItem.time);
         eventItem.iso_end = new Date(eventItem.date + ' ' + eventItem.endtime);
       }
       eventItem.eventtypes = _.without(eventItem.eventtypes.split(', '),',',' ','  ');
       eventItem.agegroups = _.without(eventItem.agegroups.split(', '),',','',' ','  ');
-      if(eventItem.signup == 1) eventItem.signup_openings = Math.floor(Math.random()*30);
+      // fake number of registrations
+      // if(eventItem.signup == 1) eventItem.signup_openings = Math.floor(Math.random()*30);
     });
+
+    // just the events that are still happening
+
+    let eventItem = eventArray[0]
+    let a = new Date(eventItem.iso_end)
+    let b = new Date()
+    console.log(a,b, a<b, a>b)
+
+    // eventArray = eventArray.filter(eventItem => (new Date(eventItem.iso_end)) < (new Date()))
+
 
     return eventArray
   }
@@ -65,7 +77,7 @@
       saveList: function() {
         getList().then((newList) => {
           this.events = newList
-          console.log('newList',newList);
+          // console.log('newList',newList);
         })
       }
     },
@@ -86,7 +98,7 @@
   }
 
   .times{
-    width:345px;
+    width:28vw;
   }
 
   .about{

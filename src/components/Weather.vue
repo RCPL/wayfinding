@@ -1,7 +1,5 @@
 <template>
-  <section>
-    <span>{{weather}}</span>
-  </section>
+  <span>{{weather}}</span>
 </template>
 
 <script>
@@ -20,7 +18,7 @@
     name:'Weather',
     data() {
       return {
-        weather: '74F'
+        weather: '58.3℉ Partly Cloudy'
       }
     },
     computed: {
@@ -42,14 +40,8 @@
 </script>
 
 <style lang="scss" scoped>
-  section{
-    background-color: rgb(12, 125, 160);
-    padding:0.5em 1em;
-    color:white;
-    font-weight:900;
-    font-size:150%;
-  }
-  time{
-    width:345px;
-  }
+span {
+  font-size: 1rem;
+  opacity: 0.5;
+}
 </style>
