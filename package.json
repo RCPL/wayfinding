@@ -5,11 +5,12 @@
   "repository": "https://github.com/RCPL/wayfinding",
   "license": "GPL-3.0",
   "dependencies": {
-    "vue": "^2.5.13",
-    "vue-router": "^3.0.1",
     "moment": "^2.20.1",
-    "xml2js": "*",
-    "underscore": "*"
+    "underscore": "*",
+    "vue": "^2.5.13",
+    "vue-interval": "^0.2.0",
+    "vue-router": "^3.0.1",
+    "xml2js": "*"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

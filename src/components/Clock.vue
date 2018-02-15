@@ -2,19 +2,33 @@
   <section>
     <span>{{currentTime}}</span>
     <span>{{currentDate}}</span>
-    <Weather/>
+    <!-- <Weather/> -->
   </section>
 </template>
 
 <script>
   import moment from 'moment'
-  import Weather from './Weather'
+  import vueinterval from 'vue-interval/dist/VueInterval.common'
+  // import Weather from './Weather'
   export default {
     name:'Clock',
-    components: {Weather},
-    computed: {
-      currentTime: () => moment().format('h:mma'),
-      currentDate: () => moment().format('dddd MMMM DD')
+    mixins:[vueinterval],
+    // components: {Weather},
+    data() {
+      return {
+        currentTime: '[clock error]',
+        currentDate: '[date error]'
+      }
+    },
+    created() {
+        this.INTERVAL__5000$updateClock()
+    },
+    methods: {
+      INTERVAL__5000$updateClock: function(){
+        this.currentTime = moment().format('hh:mm a')
+        this.currentDate = moment().format('dddd MMMM D')
+        console.log('updating');
+      }
     }
   }
 </script>
