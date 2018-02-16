@@ -27,7 +27,7 @@
       INTERVAL__5000$updateClock: function(){
         this.currentTime = moment().format('hh:mm a')
         this.currentDate = moment().format('dddd MMMM D')
-        console.log('updating');
+        console.log('clock updated');
       }
     }
   }

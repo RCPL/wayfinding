@@ -49,6 +49,22 @@
         });
       });
 
+      map.on('touchend', function(e){
+        setTimeout(()=>{
+          console.log('reset the map')
+          map.easeTo({
+            
+              duration:30000,
+            
+              zoom: 18.5,
+              center: [ -81.037352, 34.004132],
+              bearing: -199,
+              pitch: 25
+            
+          })
+        },5000)
+      });
+
       // var toggleableLayerIds = [ 'contours', 'museums' ];
 
       // for (var i = 0; i < toggleableLayerIds.length; i++) {
