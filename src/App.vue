@@ -2,12 +2,13 @@
 	<main>
 
 		<!-- <FloorMaps/> -->
-		<Map/>
-		<Clock/>
+		
+		<Map style="height:40vh"/>
 		<!-- <img src="../static/img/logo-md.svg"> -->
+		<Clock/>
 		<EventList style="padding:5vw; flex:1"/>
 		
-		<!-- <UnderConstruction/> -->
+		<UnderConstruction/>
 	</main>
 </template>
 
@@ -31,7 +32,7 @@
     }
   }
 
-  // setTimeout("location.reload(true);",15*60*1000); 
+  setTimeout("location.reload(true);",20*60*1000); 
 </script>
 
 <style lang="scss">

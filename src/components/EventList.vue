@@ -15,17 +15,24 @@
 </template>
 
 <script>
+  import moment from 'moment'
   import _ from 'underscore'
   import xml2js from 'xml2js'
 
   async function getList() {
+    // room reserve
+    // http://host6.evanced.info/richland/evanced/eventsxml.asp?nd=7&roominfo=1&loc=Meeting%20Space%20211&dm=rss2
+    
+    // events
+    // 'https://host6.evanced.info/richland/evanced/eventsxml.asp?lib=all&nd=1&alltime=0&dm=exml'
+
     // https://stackoverflow.com/a/41009103
-    const url = 'https://host6.evanced.info/richland/evanced/eventsxml.asp?lib=all&nd=1&alltime=0&dm=exml'
+    const url = 'https://host6.evanced.info/richland/evanced/eventsxml.asp?lib=all&nd=2&alltime=1&dm=exml'
     let xmlString = await fetch(url)
     .then(response => response.text())
 
     const options = {trim:true, explicitArray:false, emptyTag:undefined}
-    let eventArray = {}
+    let eventArray = []
     xml2js.parseString(xmlString, options, (error,result) => {
       if(error){
         console.error('OMG',error);
@@ -33,6 +40,7 @@
         eventArray = result.event.item
       }
     })
+    console.log('event array',eventArray)
 
     // just main
     eventArray = eventArray.filter(event => event.library === "Richland Library  Main")
@@ -49,6 +57,8 @@
       }
       eventItem.eventtypes = _.without(eventItem.eventtypes.split(', '),',',' ','  ');
       eventItem.agegroups = _.without(eventItem.agegroups.split(', '),',','',' ','  ');
+      // eventItem.time = moment(eventItem.iso_start).format('h:mm a') + '.M.';
+      // eventItem.endtime = moment(eventItem.iso_end).format('h:mm a') + '.M.';
       // fake number of registrations
       // if(eventItem.signup == 1) eventItem.signup_openings = Math.floor(Math.random()*30);
     });
@@ -95,7 +105,11 @@
   .eventItem{
     display:flex;
     flex-direction: row;
+
+    h2{ font-size:1.1rem; margin-bottom: 0.1em;}
+    h3{ font-size: 1rem; margin-top: 0.2rem;}
   }
+
 
   .times{
     width:28vw;

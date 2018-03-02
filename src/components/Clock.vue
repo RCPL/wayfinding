@@ -1,7 +1,7 @@
 <template>
   <section>
-    <span>{{currentTime}}</span>
-    <span>{{currentDate}}</span>
+    <div class="time">{{currentTime}}</div>
+    <div>{{currentDate}}</div>
     <!-- <Weather/> -->
   </section>
 </template>
@@ -25,8 +25,8 @@
     },
     methods: {
       INTERVAL__5000$updateClock: function(){
-        this.currentTime = moment().format('hh:mm a')
-        this.currentDate = moment().format('dddd MMMM D')
+        this.currentTime = moment().format('h:mm A')
+        this.currentDate = moment().format('dddd, MMMM D')
         console.log('clock updated');
       }
     }
@@ -35,13 +35,15 @@
 
 <style lang="scss" scoped>
   section{
+    display:flex;
+    flex-direction:row;
     background-color: rgb(12, 125, 160);
     padding:0.5em 1em;
     color:white;
     font-weight:900;
     font-size:150%;
   }
-  time{
-    width:345px;
+  .time{
+    width:28vw;
   }
 </style>
