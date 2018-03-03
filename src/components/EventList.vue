@@ -1,23 +1,13 @@
 <template>
   <div class="eventList">
-    <section v-for="event in events" :key="event.id" class="eventItem">
-      <div class="times">
-        <h2 class="big">{{event.time}}</h2>
-        <h3 class="little">til {{event.endtime}}</h3>
-      </div>
-
-      <div class="about">
-        <h2>{{event.title}}</h2>
-        <h3>{{event.location}}</h3>
-      </div>
-    </section>
+    <EventItem v-for="event in events" :key="event.id" :eventData="event"/>
   </div>
 </template>
 
 <script>
+  import xml2js from 'xml2js'
   import moment from 'moment'
   import _ from 'underscore'
-  import xml2js from 'xml2js'
 
   async function getList() {
     // room reserve
@@ -64,17 +54,18 @@
     });
 
     // just the events that are still happening
-
-    let eventItem = eventArray[0]
-    let a = new Date(eventItem.iso_end)
-    let b = new Date()
-    console.log(a,b, a<b, a>b)
+    eventArray = eventArray.filter(event => event.iso_end >= (new Date()))
+    // let eventItem = eventArray[0]
+    // let a = new Date(eventItem.iso_end)
+    // let b = new Date()
+    // console.log(a,b, a<b, a>b)
 
     // eventArray = eventArray.filter(eventItem => (new Date(eventItem.iso_end)) < (new Date()))
 
-
     return eventArray
   }
+
+  import EventItem from './EventItem'
 
   export default {
     name: 'EventList',
@@ -83,6 +74,7 @@
         events: []
       }
     },
+    components: {EventItem},
     methods: {
       saveList: function() {
         getList().then((newList) => {
@@ -101,21 +93,5 @@
 <style lang="scss" scoped>
   .eventList{
     overflow-y: scroll;
-  }
-  .eventItem{
-    display:flex;
-    flex-direction: row;
-
-    h2{ font-size:1.1rem; margin-bottom: 0.1em;}
-    h3{ font-size: 1rem; margin-top: 0.2rem;}
-  }
-
-
-  .times{
-    width:28vw;
-  }
-
-  .about{
-    flex:1;
   }
 </style>

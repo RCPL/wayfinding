@@ -37,11 +37,10 @@
   section{
     display:flex;
     flex-direction:row;
-    background-color: rgb(12, 125, 160);
+    background-color: rgb(14, 119, 151);
     padding:0.5em 1em;
     color:white;
-    font-weight:900;
-    font-size:150%;
+    font-size:155%;
   }
   .time{
     width:28vw;
