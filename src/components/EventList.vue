@@ -17,7 +17,7 @@
     // 'https://host6.evanced.info/richland/evanced/eventsxml.asp?lib=all&nd=1&alltime=0&dm=exml'
 
     // https://stackoverflow.com/a/41009103
-    const url = 'https://host6.evanced.info/richland/evanced/eventsxml.asp?lib=all&nd=2&alltime=1&dm=exml'
+    const url = 'https://host6.evanced.info/richland/evanced/eventsxml.asp?lib=all&nd=18&alltime=1&dm=exml'
     let xmlString = await fetch(url)
     .then(response => response.text())
 

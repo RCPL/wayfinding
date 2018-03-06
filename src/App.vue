@@ -3,7 +3,7 @@
 
 		<!-- <FloorMaps/> -->
 		
-		<Map style="height:30vh"/>
+		<Map style="height:50vh"/>
 		<!-- <img src="../static/img/logo-md.svg"> -->
 		<Clock/>
 		<EventList style="padding:5vw; flex:1"/>

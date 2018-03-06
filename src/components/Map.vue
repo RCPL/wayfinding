@@ -2,10 +2,11 @@
   <div class="map-module">
     <div id="map" style='width: 100%; height: 100%;'></div>
     <nav>
-      <div @touchstart="getLevel(3)">3</div>
-      <div @touchstart="getLevel(2)">2</div>
-      <div @touchstart="getLevel(1)" class="your_level">1</div>
-      <div @touchstart="getLevel(0)">G</div>
+      <div @touchstart="getLevel(3)" :class="{viewing: viewing_floor === 3}">3</div>
+      <div @touchstart="getLevel(2)" :class="{viewing: viewing_floor === 2}">2</div>
+      <div @touchstart="getLevel(1)" :class="{viewing: viewing_floor === 1}">1</div>
+      <div @touchstart="getLevel(0)" :class="{viewing: viewing_floor === 0}">G</div>
+      <div>{{viewing_floor}}</div>
     </nav>
   </div>
 </template>
@@ -16,7 +17,7 @@
   var resetTimer;
 
   var defaults = {
-    zoom: 18,
+    zoom: 18.3,
     bearing: -70,
     rooms: {
       'fill-extrusion-color': 'rgb(194, 202, 186)',
@@ -27,8 +28,12 @@
 
   export default {
     name: 'map-module',
+    data() { return {
+      kiosk_floor: 1,
+      kiosk_coordinates: [],
+      viewing_floor: 1
+    }},
     mounted: function() {
-
       map = new mapboxgl.Map({
           container: this.$el.querySelector('#map'),
           style: 'mapbox://styles/richlandlibrary/cj49uxv2d2z4u2sl4k0l5q9yx',
@@ -62,9 +67,9 @@
           'type': 'fill-extrusion',
           'source': 'level0',
           'source-layer': 'Spaces_Level_0',
-          // 'layout': {
-          //   'visibility': 'none',
-          // },
+          'layout': {
+            'visibility': 'none',
+          },
           'paint': defaults.rooms
         });
 
@@ -76,7 +81,7 @@
           'layout': {
         	  'text-field': '{name}',
             'text-size': 12,
-            // 'visibility': 'none'
+            'visibility': 'none'
           },
           'paint': {
             'text-color': 'black',
@@ -108,6 +113,7 @@
           'paint': {
             'text-color': 'black',
           }
+          // ,'filter': ['>', 'priority', 0]
         });
 
         // level 2
@@ -167,7 +173,7 @@
         //map.setFilter('space2', ['==', 'type', "room"]);
         //document.createElement('<svg><rect width=100 height=100 x=0 y=0/></svg>')
         var youAreHere = new mapboxgl.Marker()
-          .setLngLat([ -81.03725, 34.0044569])
+          .setLngLat([-81.03723837967836, 34.00443466613849])
           .addTo(map);
       });
 
@@ -184,9 +190,16 @@
           })
         },10000)
       });
+
+      map.on('click', function(e){
+        console.log(e);
+      })
     },
     methods: {
-      getLevel(levelNumber) {
+      getLevel: (levelNumber) => {
+        // console.log(this.viewing_floor)
+        this.viewing_floor = levelNumber;
+
         const level_poly = [
           'level0_poly',
           'level1_poly',
@@ -217,7 +230,7 @@
   nav {
     position: absolute;
     bottom:20%;
-    left:5vw;
+    right:5vw;
     background-color:white;
     border-radius: 1em;
     display:flex;
@@ -232,6 +245,10 @@
     font-weight: 800;
     color: white;
   }
+  .viewing{
+    background-color:cyan;
+  }
+
   $room:rgb(194, 202, 186);
   $room_focus: rgb(47, 140, 216);
 

@@ -6,6 +6,12 @@
     "Auditorium": {"floor":1, "id":1210},
     "BCR Classroom": {"floor":3, "id":3212},
     "Children's Room": {"floor":0, "id":216},
-    "Studio 220": {"floor":2, "id":2214}
+    "Studio 220": {"floor":2, "id":2214},
+    "Career Coaching Center": {"floor":3, "id":-1},
+    "Storytime Room": {"floor":0, "id":-1},
+    "Teen Makerspace": {"floor":0, "id":-1},
+    "Learning Engagement Classroom": {"floor":3, "id":-1},
+    "Makerspace": {"floor":2, "id":-1},
+    "Meeting Space 200": {"floor":2, "id":-1}
   }
 }

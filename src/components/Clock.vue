@@ -21,10 +21,10 @@
       }
     },
     created() {
-        this.INTERVAL__5000$updateClock()
+        this.INTERVAL__30000$updateClock()
     },
     methods: {
-      INTERVAL__5000$updateClock: function(){
+      INTERVAL__30000$updateClock: function(){
         this.currentTime = moment().format('h:mm A')
         this.currentDate = moment().format('dddd, MMMM D')
         console.log('clock updated');
