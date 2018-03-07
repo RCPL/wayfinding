@@ -18,12 +18,7 @@
 
   var defaults = {
     zoom: 18.3,
-    bearing: -70,
-    rooms: {
-      'fill-extrusion-color': 'rgb(194, 202, 186)',
-      'fill-extrusion-height': 1,
-      'fill-extrusion-base': 0
-    }
+    bearing: -70
   }
 
   export default {
@@ -44,151 +39,74 @@
       });
 
       map.on('load', function () {
-        map.addSource('level3',{
+        map.addSource('indoor',{
           type: 'vector',
-          url: 'mapbox://richlandlibrary.cjdko37p3038d2wo76077ti50-2zcor'
-        });
-        map.addSource('level2',{
-          type: 'vector',
-          url: 'mapbox://richlandlibrary.cjdeuut5y002x2xpfy8t3v9h4-1yblt'
-        });
-        map.addSource('level1',{
-          type: 'vector',
-          url: 'mapbox://richlandlibrary.cjd24maz51ohm2qo4hzg06n8e-8mx1l'
-        });
-        map.addSource('level0',{
-          type: 'vector',
-          url: 'mapbox://richlandlibrary.cjdm6sv830an52zs3mjvauu3f-9dlod'
-        });
-
-        // level 0
-        map.addLayer({
-          'id': 'level0_poly',
-          'type': 'fill-extrusion',
-          'source': 'level0',
-          'source-layer': 'Spaces_Level_0',
-          'layout': {
-            'visibility': 'none',
-          },
-          'paint': defaults.rooms
+          url: 'mapbox://richlandlibrary.cjeefwc2d18s42xo7d2ndqa3k-1psl4'
         });
 
         map.addLayer({
-          'id': 'level0_labels',
-          'type': 'symbol',
-          'source': 'level0',
-          'source-layer': 'Spaces_Level_0',
-          'layout': {
-        	  'text-field': '{name}',
-            'text-size': 12,
-            'visibility': 'none'
-          },
+          'id': 'regular_areas',
+          'type': 'fill',
+          'source': 'indoor',
+          'source-layer': 'Richland_Library_Indoors',
           'paint': {
-            'text-color': 'black',
-          }
+            'fill-color': 'rgb(194, 202, 186)'
+          },
+          filter: [ 'all',
+            
+            ['==','level_0',1]
+          ]
         });
 
-        // level 1
         map.addLayer({
-          'id': 'level1_poly',
+          'id': 'walls',
           'type': 'fill-extrusion',
-          'source': 'level1',
-          'source-layer': 'Spaces_Level_1',
-          // 'layout': {
-          //   'visibility': 'none',
-          // },
-          'paint': defaults.rooms
-        });
-
-        map.addLayer({
-          'id': 'level1_labels',
-          'type': 'symbol',
-          'source': 'level1',
-          'source-layer': 'Spaces_Level_1',
-          'layout': {
-        	  'text-field': '{name}',
-            'text-size': 12,
-            // 'visibility': 'none'
-          },
+          'source': 'indoor',
+          'source-layer': 'Richland_Library_Indoors',
           'paint': {
-            'text-color': 'black',
-          }
-          // ,'filter': ['>', 'priority', 0]
-        });
-
-        // level 2
-        map.addLayer({
-          'id': 'level2_poly',
-          'type': 'fill-extrusion',
-          'source': 'level2',
-          'source-layer': 'Spaces_Level_2',
-          'layout': {
-            'visibility': 'none',
+            'fill-extrusion-color': 'white',
+            'fill-extrusion-height': 1,
           },
-          'paint': defaults.rooms
+          filter: [ 'all',
+            ['==','type','wall'],
+            ['==','level_0',1]
+          ]
         });
 
         map.addLayer({
-          'id': 'level2_labels',
+          'id': 'labels',
           'type': 'symbol',
-          'source': 'level2',
-          'source-layer': 'Spaces_Level_2',
-          'layout': {
-        	  'text-field': '{name}',
-            'text-size': 12,
-            'visibility': 'none'
-          },
+          'source': 'indoor',
+          'source-layer': 'Richland_Library_Indoors',
           'paint': {
-            'text-color': 'black',
-          }
-        });
-
-        // level 3
-        map.addLayer({
-          'id': 'level3_poly',
-          'type': 'fill-extrusion',
-          'source': 'level3',
-          'source-layer': 'Spaces_Level_3',
-          'layout': {
-            'visibility': 'none',
+            'text-field': '{label}'
           },
-          'paint': defaults.rooms
+          filter: [ 'all',
+            ['>','priority',0],
+            ['==','level_0',1]
+          ]
         });
 
-        map.addLayer({
-          'id': 'level3_labels',
-          'type': 'symbol',
-          'source': 'level3',
-          'source-layer': 'Spaces_Level_3',
-          'layout': {
-        	  'text-field': '{name}',
-            'text-size': 12,
-            'visibility': 'none'
-          },
-          'paint': {
-            'text-color': 'black',
-          }
-        });
-
-        //map.setFilter('space2', ['==', 'type', "room"]);
-        //document.createElement('<svg><rect width=100 height=100 x=0 y=0/></svg>')
         var youAreHere = new mapboxgl.Marker()
           .setLngLat([-81.03723837967836, 34.00443466613849])
           .addTo(map);
       });
 
+      map.on('touchstart', function(e){
+        clearTimeout(resetTimer);
+      });
       map.on('touchend', function(e){
-        console.log('reset the map')
         clearTimeout(resetTimer);
         resetTimer = setTimeout(()=>{
-          map.easeTo({
+          console.log('reset the map')
+          map.flyTo({
               duration:30000,
               zoom: defaults.zoom,
               center: [ -81.037352, 34.004132],
               bearing: defaults.bearing,
               pitch: 25
           })
-        },10000)
+        },3000)
       });
 
       map.on('click', function(e){
