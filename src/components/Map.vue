@@ -39,22 +39,23 @@
       });
 
       map.on('load', function () {
+
         map.addSource('indoor',{
-          type: 'vector',
-          url: 'mapbox://richlandlibrary.cjeefwc2d18s42xo7d2ndqa3k-1psl4'
+          type: 'geojson',
+          data: '/static/data/geojson/floor-1-polygons.geojson'
         });
 
         map.addLayer({
           'id': 'regular_areas',
           'type': 'fill',
           'source': 'indoor',
-          'source-layer': 'Richland_Library_Indoors',
           'paint': {
             'fill-color': 'rgb(194, 202, 186)'
           },
           filter: [ 'all',
-            
-            ['==','level_0',1]
+            ['!=','type','wall'],
+            ['!=','type','window'],
+            ['!=','type','staff']
           ]
         });
 
@@ -62,30 +63,57 @@
           'id': 'walls',
           'type': 'fill-extrusion',
           'source': 'indoor',
-          'source-layer': 'Richland_Library_Indoors',
           'paint': {
             'fill-extrusion-color': 'white',
-            'fill-extrusion-height': 1,
+            'fill-extrusion-height': 0.5,
           },
-          filter: [ 'all',
+          filter: [
+            'any',
             ['==','type','wall'],
-            ['==','level_0',1]
+            ['==','type','staff']
           ]
         });
 
         map.addLayer({
-          'id': 'labels',
-          'type': 'symbol',
+          'id': 'windows',
+          'type': 'fill-extrusion',
           'source': 'indoor',
-          'source-layer': 'Richland_Library_Indoors',
           'paint': {
-            'text-field': '{label}'
+            'fill-extrusion-color': 'rgb(200,255,220)',
+            'fill-extrusion-height': 1,
+            'fill-extrusion-opacity': 0.4
           },
-          filter: [ 'all',
-            ['>','priority',0],
-            ['==','level_0',1]
-          ]
+          filter: ['==','type','window']
         });
+
+        // map.addLayer({
+        //   'id': 'windows',
+        //   'type': 'fill-extrusion',
+        //   'source': 'indoor',
+        //   'source-layer': 'Richland_Library_Indoors',
+        //   'paint': {
+        //     'fill-extrusion-color': 'white',
+        //     'fill-extrusion-height': 1,
+        //   },
+        //   filter: [ 'all',
+        //     ['==','type','wall'],
+        //     ['==','level_0',1]
+        //   ]
+        // });
+
+        // map.addLayer({
+        //   'id': 'labels',
+        //   'type': 'symbol',
+        //   'source': 'indoor',
+        //   'source-layer': 'Richland_Library_Indoors',
+        //   'paint': {
+        //     'text-field': '{label}'
+        //   },
+        //   filter: [ 'all',
+        //     ['>','priority',0],
+        //     ['==','level_0',1]
+        //   ]
+        // });
 
         var youAreHere = new mapboxgl.Marker()
           .setLngLat([-81.03723837967836, 34.00443466613849])
