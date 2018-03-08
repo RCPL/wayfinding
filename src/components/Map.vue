@@ -2,11 +2,10 @@
   <div class="map-module">
     <div id="map" style='width: 100%; height: 100%;'></div>
     <nav>
-      <div @touchstart="getLevel(3)" :class="{viewing: viewing_floor === 3}">3</div>
-      <div @touchstart="getLevel(2)" :class="{viewing: viewing_floor === 2}">2</div>
-      <div @touchstart="getLevel(1)" :class="{viewing: viewing_floor === 1}">1</div>
-      <div @touchstart="getLevel(0)" :class="{viewing: viewing_floor === 0}">G</div>
-      <div>{{viewing_floor}}</div>
+      <div @touchstart="getLevel(3)" :class="{viewing: viewing_floor === 3, your_level: kiosk_floor === 3}">3</div>
+      <div @touchstart="getLevel(2)" :class="{viewing: viewing_floor === 2, your_level: kiosk_floor === 2}">2</div>
+      <div @touchstart="getLevel(1)" :class="{viewing: viewing_floor === 1, your_level: kiosk_floor === 1}">1</div>
+      <div @touchstart="getLevel(0)" :class="{viewing: viewing_floor === 0, your_level: kiosk_floor === 0}">G</div>
     </nav>
   </div>
 </template>
@@ -31,7 +30,7 @@
     mounted: function() {
       map = new mapboxgl.Map({
           container: this.$el.querySelector('#map'),
-          style: 'mapbox://styles/richlandlibrary/cj49uxv2d2z4u2sl4k0l5q9yx',
+          style: 'mapbox://styles/mapbox/light-v9',
           zoom: defaults.zoom,
           center: [ -81.037352, 34.004132],
           bearing: defaults.bearing,
@@ -40,19 +39,26 @@
 
       map.on('load', function () {
 
-        map.addSource('indoor',{
+        map.addSource('indoorLabels',{
           type: 'geojson',
-          data: '/static/data/geojson/floor-1-polygons.geojson'
+          data: '/static/data/geojson/labels.geojson'
+        });
+
+        map.addSource('indoorPolygons',{
+          type: 'geojson',
+          data: '/static/data/geojson/polygons.geojson'
         });
 
         map.addLayer({
           'id': 'regular_areas',
           'type': 'fill',
-          'source': 'indoor',
+          'source': 'indoorPolygons',
           'paint': {
             'fill-color': 'rgb(194, 202, 186)'
           },
-          filter: [ 'all',
+          filter: [
+            'all',
+            ['==','level_2',1],
             ['!=','type','wall'],
             ['!=','type','window'],
             ['!=','type','staff']
@@ -62,58 +68,56 @@
         map.addLayer({
           'id': 'walls',
           'type': 'fill-extrusion',
-          'source': 'indoor',
+          'source': 'indoorPolygons',
           'paint': {
-            'fill-extrusion-color': 'white',
-            'fill-extrusion-height': 0.5,
+            'fill-extrusion-color': 'rgb(180,180,180)',
+            'fill-extrusion-height': 1,
           },
           filter: [
-            'any',
-            ['==','type','wall'],
-            ['==','type','staff']
+            'all',
+            ['==','level_2',1],
+            [
+              'any',
+              ['==','type','wall'],
+              ['==','staff',1]
+            ]
           ]
         });
 
         map.addLayer({
           'id': 'windows',
           'type': 'fill-extrusion',
-          'source': 'indoor',
+          'source': 'indoorPolygons',
           'paint': {
             'fill-extrusion-color': 'rgb(200,255,220)',
-            'fill-extrusion-height': 1,
+            'fill-extrusion-height': 2,
             'fill-extrusion-opacity': 0.4
           },
-          filter: ['==','type','window']
+          filter: [
+            'all',
+            ['==','level_2',1],
+            ['==','type','window']
+          ]
         });
 
-        // map.addLayer({
-        //   'id': 'windows',
-        //   'type': 'fill-extrusion',
-        //   'source': 'indoor',
-        //   'source-layer': 'Richland_Library_Indoors',
-        //   'paint': {
-        //     'fill-extrusion-color': 'white',
-        //     'fill-extrusion-height': 1,
-        //   },
-        //   filter: [ 'all',
-        //     ['==','type','wall'],
-        //     ['==','level_0',1]
-        //   ]
-        // });
-
-        // map.addLayer({
-        //   'id': 'labels',
-        //   'type': 'symbol',
-        //   'source': 'indoor',
-        //   'source-layer': 'Richland_Library_Indoors',
-        //   'paint': {
-        //     'text-field': '{label}'
-        //   },
-        //   filter: [ 'all',
-        //     ['>','priority',0],
-        //     ['==','level_0',1]
-        //   ]
-        // });
+        map.addLayer({
+          'id': 'labels',
+          'type': 'symbol',
+          'source': 'indoorLabels',
+          'layout': {
+            'text-field': '{label}',
+            // "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+            // "text-offset": [0, 0.6],
+            "text-anchor": "top"
+          },
+          'paint': {
+            'text-color': 'black'
+          },
+          filter: [ 'all',
+            ['==','level_2',1],
+            ['!=','staff',1]
+          ]
+        });
 
         var youAreHere = new mapboxgl.Marker()
           .setLngLat([-81.03723837967836, 34.00443466613849])
@@ -142,28 +146,9 @@
       })
     },
     methods: {
-      getLevel: (levelNumber) => {
-        // console.log(this.viewing_floor)
+      getLevel: function(levelNumber) {
         this.viewing_floor = levelNumber;
-
-        const level_poly = [
-          'level0_poly',
-          'level1_poly',
-          'level2_poly',
-          'level3_poly',
-        ];
-        const level_labels = [
-          'level0_labels',
-          'level1_labels',
-          'level2_labels',
-          'level3_labels',
-        ];
-
-        for(let i=0; i<=3; i++){
-          const visibility = (i === levelNumber) ? 'visible' : 'none';
-          map.setLayoutProperty(level_poly[i], 'visibility', visibility);
-          map.setLayoutProperty(level_labels[i], 'visibility', visibility);
-        }
+        console.log('set the level filter to',levelNumber)
       }
     }
   }
@@ -182,18 +167,20 @@
     display:flex;
     flex-direction: column;
     text-align:center;
+    overflow:hidden;
   }
   nav > *{
     padding:0.5em;
+  }
+  .viewing{
+    background-color:cyan;
   }
   .your_level{
     background-color: red;
     font-weight: 800;
     color: white;
   }
-  .viewing{
-    background-color:cyan;
-  }
+
 
   $room:rgb(194, 202, 186);
   $room_focus: rgb(47, 140, 216);
