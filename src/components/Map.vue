@@ -50,7 +50,7 @@
         });
 
         map.addLayer({
-          'id': 'regular_areas',
+          'id': 'areas',
           'type': 'fill',
           'source': 'indoorPolygons',
           'paint': {
@@ -58,7 +58,7 @@
           },
           filter: [
             'all',
-            ['==','level_2',1],
+            ['==','level_1',1],
             ['!=','type','wall'],
             ['!=','type','window'],
             ['!=','type','staff']
@@ -75,7 +75,7 @@
           },
           filter: [
             'all',
-            ['==','level_2',1],
+            ['==','level_1',1],
             [
               'any',
               ['==','type','wall'],
@@ -95,7 +95,7 @@
           },
           filter: [
             'all',
-            ['==','level_2',1],
+            ['==','level_1',1],
             ['==','type','window']
           ]
         });
@@ -114,7 +114,7 @@
             'text-color': 'black'
           },
           filter: [ 'all',
-            ['==','level_2',1],
+            ['==','level_1',1],
             ['!=','staff',1]
           ]
         });
@@ -149,6 +149,43 @@
       getLevel: function(levelNumber) {
         this.viewing_floor = levelNumber;
         console.log('set the level filter to',levelNumber)
+        map.setFilter('areas',
+        [
+          'all',
+          ['==',`level_${levelNumber}`,1],
+          [
+            'any',
+            ['!=','type','wall'],
+            ['!=','type','window'],
+            ['!=','type','staff']
+          ],
+          ['!=','room_id','null']
+        ]);
+
+        map.setFilter('walls',
+        [
+          'all',
+          ['==',`level_${levelNumber}`,1],
+          [
+            'any',
+            ['==','type','wall'],
+            ['==','staff',1]
+          ]
+        ]);
+
+        map.setFilter('windows',
+        [
+          'all',
+          ['==',`level_${levelNumber}`,1],
+          ['==','type','window'],
+        ]);
+
+        map.setFilter('labels',
+        [
+          'all',
+          ['==',`level_${levelNumber}`,1],
+          ['!=','staff',1]
+        ]);
       }
     }
   }
