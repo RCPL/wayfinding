@@ -17,7 +17,8 @@
 
   var defaults = {
     zoom: 18.3,
-    bearing: -70
+    bearing: -70,
+    center: {lng: -81.03737984088696, lat: 34.00420010876162}
   }
 
   export default {
@@ -32,7 +33,7 @@
           container: this.$el.querySelector('#map'),
           style: 'mapbox://styles/mapbox/light-v9',
           zoom: defaults.zoom,
-          center: [ -81.037352, 34.004132],
+          center: defaults.center,
           bearing: defaults.bearing,
           pitch:25
       });
@@ -134,7 +135,7 @@
           map.flyTo({
               duration:30000,
               zoom: defaults.zoom,
-              center: [ -81.037352, 34.004132],
+              center: defaults.center,
               bearing: defaults.bearing,
               pitch: 25
           })
@@ -221,5 +222,4 @@
 
   $room:rgb(194, 202, 186);
   $room_focus: rgb(47, 140, 216);
-
 </style>

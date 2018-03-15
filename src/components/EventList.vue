@@ -9,6 +9,8 @@
   import moment from 'moment'
   import _ from 'underscore'
 
+  import EventItem from './EventItem'
+
   async function getList() {
     // room reserve
     // http://host6.evanced.info/richland/evanced/eventsxml.asp?nd=7&roominfo=1&loc=Meeting%20Space%20211&dm=rss2
@@ -31,9 +33,6 @@
       }
     })
     console.log('event array',eventArray)
-
-    // just main
-    eventArray = eventArray.filter(event => event.library === "Richland Library  Main")
 
     // clean the data so that it's actually useful
     _.each(eventArray, eventItem => {
@@ -64,8 +63,6 @@
 
     return eventArray
   }
-
-  import EventItem from './EventItem'
 
   export default {
     name: 'EventList',

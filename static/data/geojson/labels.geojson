@@ -13,6 +13,7 @@
 { "type": "Feature", "properties": { "room_id": null, "label": "Stairs", "level_0": null, "level_1": 1, "level_2": null, "level_3": null, "staff": null, "priority": 10 }, "geometry": { "type": "Point", "coordinates": [ -81.037650856970004, 34.003829999668092 ] } },
 { "type": "Feature", "properties": { "room_id": null, "label": "Storage", "level_0": null, "level_1": 1, "level_2": null, "level_3": null, "staff": 1, "priority": null }, "geometry": { "type": "Point", "coordinates": [ -81.037553369312803, 34.003804966628358 ] } },
 { "type": "Feature", "properties": { "room_id": null, "label": "Bathrooms", "level_0": null, "level_1": 1, "level_2": null, "level_3": null, "staff": null, "priority": 12 }, "geometry": { "type": "Point", "coordinates": [ -81.037472888340844, 34.003829410209512 ] } },
-{ "type": "Feature", "properties": { "room_id": null, "label": "Exit", "level_0": null, "level_1": 1, "level_2": null, "level_3": null, "staff": null, "priority": 10 }, "geometry": { "type": "Point", "coordinates": [ -81.037191156055968, 34.004493033786062 ] } }
+{ "type": "Feature", "properties": { "room_id": null, "label": "Exit", "level_0": null, "level_1": 1, "level_2": null, "level_3": null, "staff": null, "priority": 10 }, "geometry": { "type": "Point", "coordinates": [ -81.037191156055968, 34.004493033786062 ] } },
+{ "type": "Feature", "properties": { "room_id": null, "label": "Printer", "level_0": null, "level_1": 1, "level_2": null, "level_3": null, "staff": null, "priority": null }, "geometry": { "type": "Point", "coordinates": [ -81.037617716530377, 34.004407055476904 ] } }
 ]
 }
