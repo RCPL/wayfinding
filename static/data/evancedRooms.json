@@ -1,4 +1,28 @@
 {
+  "_index": [
+    "Richland Library Main",
+    "Richland Library Ballentine",
+    "Richland Library Blythewood",
+    "Richland Library Cooper",
+    "Richland Library Eastover",
+    "Richland Library North Main",
+    "Richland Library Northeast",
+    "Richland Library Sandhills",
+    "Richland Library Southeast",
+    "Richland Library St. Andrews",
+    "Richland Library Wheatley",
+    "Richland Library Operations Center",
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    "Richland Library Coworking Center",
+    20,
+    "Richland Library Coworking Center Mac Station"
+  ],
   "Richland Library  Main": {
     "Meeting Space 213": {"floor":2, "id":2246},
     "Meeting Space 214": {"floor":2, "id":2245},
