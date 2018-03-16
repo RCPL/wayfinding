@@ -11,7 +11,7 @@
 
   import EventItem from './EventItem'
 
-  async function getList() {
+    async function getList(reservations) {
     // room reserve
     // http://host6.evanced.info/richland/evanced/eventsxml.asp?nd=7&roominfo=1&loc=Meeting%20Space%20211&dm=rss2
     
@@ -19,7 +19,7 @@
     // 'https://host6.evanced.info/richland/evanced/eventsxml.asp?lib=all&nd=1&alltime=0&dm=exml'
 
     // https://stackoverflow.com/a/41009103
-    const url = 'https://host6.evanced.info/richland/evanced/eventsxml.asp?lib=all&nd=18&alltime=1&dm=exml'
+    const url = `https://host6.evanced.info/richland/evanced/eventsxml.asp?lib=0&nd=1&alltime=1&roominfo=${reservations}&dm=xml`
     let xmlString = await fetch(url)
     .then(response => response.text())
 
@@ -39,27 +39,35 @@
       if(eventItem.time === "All Day"){
         // set start and end times for all day events to standard room hours 9am-8:45pm
         eventItem.iso_start = moment(new Date(eventItem.date)).set({hour: 9, minute:0})._d;
-        eventItem.iso_end = moment(new Date(eventItem.date)).set({hour: 20, minute:45})._d;
+        eventItem.iso_end = moment(new Date(eventItem.enddate || eventItem.date)).set({hour: 20, minute:45})._d;
       }else{
         eventItem.iso_start = new Date(eventItem.date + ' ' + eventItem.time);
         eventItem.iso_end = new Date(eventItem.date + ' ' + eventItem.endtime);
       }
-      eventItem.eventtypes = _.without(eventItem.eventtypes.split(', '),',',' ','  ');
-      eventItem.agegroups = _.without(eventItem.agegroups.split(', '),',','',' ','  ');
+
+      // boolean if the event is currently happening
+      eventItem.now = (eventItem.iso_start < (new Date()) && eventItem.iso_end > (new Date()))
+
+      // eventItem.eventtypes = _.without(eventItem.eventtypes.split(', '),',',' ','  ');
+      // eventItem.agegroups = _.without(eventItem.agegroups.split(', '),',','',' ','  ');
       // eventItem.time = moment(eventItem.iso_start).format('h:mm a') + '.M.';
       // eventItem.endtime = moment(eventItem.iso_end).format('h:mm a') + '.M.';
       // fake number of registrations
       // if(eventItem.signup == 1) eventItem.signup_openings = Math.floor(Math.random()*30);
-    });
+    })
 
     // just the events that are still happening
     eventArray = eventArray.filter(event => event.iso_end >= (new Date()))
-    // let eventItem = eventArray[0]
-    // let a = new Date(eventItem.iso_end)
-    // let b = new Date()
-    // console.log(a,b, a<b, a>b)
 
-    // eventArray = eventArray.filter(eventItem => (new Date(eventItem.iso_end)) < (new Date()))
+    // sort by start time then end time
+    eventArray = eventArray.sort(function(a,b){
+      const c = a.iso_start - b.iso_start
+      if(c === 0){
+        return a.iso_end - b.iso_end
+      }else{
+        return c;
+      }
+    })
 
     return eventArray
   }

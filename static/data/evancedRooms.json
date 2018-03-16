@@ -36,6 +36,22 @@
     "Teen Makerspace": {"floor":0, "id":-1},
     "Learning Engagement Classroom": {"floor":3, "id":-1},
     "Makerspace": {"floor":2, "id":-1},
-    "Meeting Space 200": {"floor":2, "id":-1}
+    "Meeting Space 200": {"floor":2, "id":-1},
+    "Meeting Space 201": {"floor":2, "id":-1},
+    "Meeting Space 202": {"floor":2, "id":-1},
+    "Meeting Space 203": {"floor":2, "id":-1},
+    "Meeting Space 204": {"floor":2, "id":-1},
+    "Meeting Space 205": {"floor":2, "id":-1},
+    "Meeting Space 207": {"floor":2, "id":-1},
+    "Meeting Space 208": {"floor":2, "id":-1},
+    "Meeting Space 209": {"floor":2, "id":-1},
+    "Meeting Space 210": {"floor":2, "id":-1},
+    "Meeting Space 211": {"floor":2, "id":-1},
+
+    "Post Production Lab": {"floor":2, "id":-1},
+    "Production Stage": {"floor":2, "id":-1}
+
+    
+    
   }
 }
