@@ -7,7 +7,7 @@
 <script>
   import xml2js from 'xml2js'
   import moment from 'moment'
-  import _ from 'underscore'
+  import vueinterval from 'vue-interval/dist/VueInterval.common'
 
   import EventItem from './EventItem'
 
@@ -32,17 +32,22 @@
         eventArray = result.event.item
       }
     })
-    console.log('event array',eventArray)
 
     // clean the data so that it's actually useful
-    _.each(eventArray, eventItem => {
-      if(eventItem.time === "All Day"){
-        // set start and end times for all day events to standard room hours 9am-8:45pm
+    eventArray.forEach( (eventItem) => {
+
+      // the end date isn't set when it's the same as the start date
+      eventItem.enddate = eventItem.enddate || eventItem.date
+
+      // set start and end times for all day events to standard room hours 9am-8:45pm 
+      if(eventItem.time === "All Day"){  
         eventItem.iso_start = moment(new Date(eventItem.date)).set({hour: 9, minute:0})._d;
-        eventItem.iso_end = moment(new Date(eventItem.enddate || eventItem.date)).set({hour: 20, minute:45})._d;
+        eventItem.iso_end = moment(new Date(eventItem.enddate)).set({hour: 20, minute:45})._d;
+      
+      // convert string datetime into a real date object
       }else{
         eventItem.iso_start = new Date(eventItem.date + ' ' + eventItem.time);
-        eventItem.iso_end = new Date(eventItem.date + ' ' + eventItem.endtime);
+        eventItem.iso_end = new Date(eventItem.enddate + ' ' + eventItem.endtime);
       }
 
       // boolean if the event is currently happening
@@ -79,20 +84,19 @@
         events: []
       }
     },
+    mixins:[vueinterval],
     components: {EventItem},
     methods: {
-      saveList: function() {
-        getList().then((newList) => {
-          this.events = newList
-          // console.log('newList',newList);
+      INTERVAL__30000$saveList: function() {
+        getList(1).then((result) => {
+          this.events = result
         })
       }
     },
-    mounted: function() {
-      this.saveList();
+    created: function() {
+      this.INTERVAL__30000$saveList()
     }
   }
-
 </script>
 
 <style lang="scss" scoped>

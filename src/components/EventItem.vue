@@ -1,6 +1,7 @@
 <template>
   <section class="eventItem" @touchstart="tapped">
     <div class="times">
+      <span v-if="eventData.now">NOW</span>
       <h2 class="big">{{eventData.time}}</h2>
       <h3 class="little">til {{eventData.endtime}}</h3>
     </div>
@@ -29,9 +30,10 @@ export default {
   props: ['eventData'],
   computed: {
     floor: function() {return evancedRooms[this.eventData.library][this.eventData.location].floor || '-1' },
-    room_id: function() {return evancedRooms[this.eventData.library][this.eventData.location].id },
+    room_id: function() {return evancedRooms[this.eventData.library][this.eventData.location].id || '-1' },
     up: function() {return this.floor > config.kioskFloor},
     down: function() {return this.floor < config.kioskFloor}
+
   },
   methods: {
     tapped() {
@@ -39,7 +41,7 @@ export default {
       // let room = this.eventData.location;
       // let lib = this.eventData.library;
       // console.log(evancedRooms[lib][room])
-      console.log(this.room_id)
+      console.log(this.room_id, this.floor)
     }
   }
 }

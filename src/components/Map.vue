@@ -18,7 +18,7 @@
   var defaults = {
     zoom: 18.3,
     bearing: -70,
-    center: {lng: -81.03737984088696, lat: 34.00420010876162}
+    center: {lng: -81.03735096824548, lat: 34.004175572139815}
   }
 
   export default {

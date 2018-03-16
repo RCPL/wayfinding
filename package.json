@@ -6,7 +6,6 @@
   "license": "GPL-3.0",
   "dependencies": {
     "moment": "^2.21.0",
-    "underscore": "*",
     "vue": "^2.5.15",
     "vue-interval": "^0.2.0",
     "vue-router": "^3.0.1",
