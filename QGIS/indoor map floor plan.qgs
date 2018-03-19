@@ -23,7 +23,7 @@
     </layer-tree-group>
     <layer-tree-group expanded="1" checked="Qt::PartiallyChecked" name="Blueprints">
       <customproperties/>
-      <layer-tree-layer expanded="1" providerKey="gdal" checked="Qt::Checked" id="floor_3_modified20180214144514730" source="/Users/wbowling/Work/digital-wayfinding/QGIS/floor-3_modified.tif" name="floor-3_modified">
+      <layer-tree-layer expanded="1" providerKey="gdal" checked="Qt::Unchecked" id="floor_3_modified20180214144514730" source="/Users/wbowling/Work/digital-wayfinding/QGIS/floor-3_modified.tif" name="floor-3_modified">
         <customproperties/>
       </layer-tree-layer>
       <layer-tree-layer expanded="1" providerKey="gdal" checked="Qt::Unchecked" id="floor_2_modified20180214141533171" source="/Users/wbowling/Work/digital-wayfinding/QGIS/floor-2_modified.tif" name="floor-2_modified">
@@ -32,7 +32,7 @@
       <layer-tree-layer expanded="1" providerKey="gdal" checked="Qt::Unchecked" id="floor_1_modified20180214140446342" source="/Users/wbowling/Work/digital-wayfinding/QGIS/floor-1_modified.tif" name="floor-1_modified">
         <customproperties/>
       </layer-tree-layer>
-      <layer-tree-layer expanded="1" providerKey="gdal" checked="Qt::Unchecked" id="floor_0_modified20180214135520024" source="/Users/wbowling/Work/digital-wayfinding/QGIS/floor-0_modified.tif" name="floor-0_modified">
+      <layer-tree-layer expanded="1" providerKey="gdal" checked="Qt::Checked" id="floor_0_modified20180214135520024" source="/Users/wbowling/Work/digital-wayfinding/QGIS/floor-0_modified.tif" name="floor-0_modified">
         <customproperties/>
       </layer-tree-layer>
     </layer-tree-group>
@@ -50,10 +50,10 @@
   <mapcanvas>
     <units>meters</units>
     <extent>
-      <xmin>-9021059.45786184445023537</xmin>
-      <ymin>4029336.77732560597360134</ymin>
-      <xmax>-9021000.45497411862015724</xmax>
-      <ymax>4029410.76302323304116726</ymax>
+      <xmin>-9021125.43732415325939655</xmin>
+      <ymin>4029282.84687826968729496</ymin>
+      <xmax>-9020972.67721547372639179</xmax>
+      <ymax>4029476.64226842671632767</ymax>
     </extent>
     <rotation>110</rotation>
     <projections>1</projections>
@@ -125,9 +125,9 @@
     </legendlayer>
     <legendgroup open="false" checked="Qt::Unchecked" name="Level 0"/>
     <legendgroup open="true" checked="Qt::PartiallyChecked" name="Blueprints">
-      <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="floor-3_modified" showFeatureCount="0">
+      <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="floor-3_modified" showFeatureCount="0">
         <filegroup open="true" hidden="false">
-          <legendlayerfile isInOverview="0" layerid="floor_3_modified20180214144514730" visible="1"/>
+          <legendlayerfile isInOverview="0" layerid="floor_3_modified20180214144514730" visible="0"/>
         </filegroup>
       </legendlayer>
       <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="floor-2_modified" showFeatureCount="0">
@@ -140,9 +140,9 @@
           <legendlayerfile isInOverview="0" layerid="floor_1_modified20180214140446342" visible="0"/>
         </filegroup>
       </legendlayer>
-      <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="floor-0_modified" showFeatureCount="0">
+      <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="floor-0_modified" showFeatureCount="0">
         <filegroup open="true" hidden="false">
-          <legendlayerfile isInOverview="0" layerid="floor_0_modified20180214135520024" visible="0"/>
+          <legendlayerfile isInOverview="0" layerid="floor_0_modified20180214135520024" visible="1"/>
         </filegroup>
       </legendlayer>
     </legendgroup>
@@ -547,10 +547,10 @@
       </edittypes>
       <renderer-v2 forceraster="0" symbollevels="0" type="RuleRenderer" enableorderby="0">
         <rules key="{83b32ce4-be97-40f3-b1f2-6c2e0556fd7a}">
-          <rule filter="level_3 LIKE 1" key="{361d9aa4-0daa-4f28-996e-1795e2947132}" symbol="0" label="3"/>
+          <rule checkstate="0" filter="level_3 LIKE 1" key="{361d9aa4-0daa-4f28-996e-1795e2947132}" symbol="0" label="3"/>
           <rule checkstate="0" filter="level_2 LIKE 1" key="{8f3e2e74-c2d4-4144-8c44-2804440b010f}" symbol="1" label="2"/>
           <rule checkstate="0" filter="level_1 LIKE 1" key="{de62af62-98b4-4275-8a8b-e2f8c6f229d5}" symbol="2" label="1"/>
-          <rule checkstate="0" filter="level_0 LIKE 1" key="{6f83c33a-5d07-4994-8675-d3863b3398d7}" symbol="3" label="G"/>
+          <rule filter="level_0 LIKE 1" key="{6f83c33a-5d07-4994-8675-d3863b3398d7}" symbol="3" label="G"/>
           <rule scalemaxdenom="100000" checkstate="0" filter="&quot;priority&quot; > 25" key="{e68fa74e-a850-4bee-a930-2075bdc14754}" symbol="4" scalemindenom="1000" label="Least"/>
           <rule scalemaxdenom="551" checkstate="0" filter="&quot;priority&quot; &lt;= 21 AND &quot;priority&quot; > 18" key="{6d905dcf-cefe-45fb-ab4a-25ff378d5162}" symbol="5" scalemindenom="500" label="Medium"/>
           <rule checkstate="0" filter="&quot;priority&quot; &lt;= 16" key="{b3fb396c-17d0-43e6-be3c-aeb1e55d87cb}" symbol="6" label="Very Important"/>
@@ -1046,7 +1046,7 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <renderer-v2 forceraster="0" symbollevels="0" type="RuleRenderer" enableorderby="0">
         <rules key="{4d3a7ea8-fd37-41c3-8c62-2272d6f86aac}">
-          <rule filter="level_3 LIKE 1" key="{92063696-7af6-4c0c-a333-5c6c089fa8cf}" symbol="0" label="Level 3">
+          <rule checkstate="0" filter="level_3 LIKE 1" key="{92063696-7af6-4c0c-a333-5c6c089fa8cf}" symbol="0" label="Level 3">
             <rule filter="type like 'wall'" key="{85b0e102-6655-45f7-bb5f-a284923994a1}" symbol="1" label="wall"/>
             <rule filter="type like 'window'" key="{9fa238f4-de3c-44c7-afc2-ba360eefbed9}" symbol="2" label="window"/>
             <rule filter="type LIKE 'room'" key="{abec1d39-b3ee-4bf3-8158-cc95c6cd19e7}" symbol="3" label="room"/>
@@ -1064,11 +1064,11 @@ def my_form_open(dialog, layer, feature):
             <rule checkstate="0" filter="type LIKE 'room'" key="{27b466c6-edbc-4935-a20d-213a8dda7820}" symbol="13" label="room"/>
             <rule checkstate="0" filter="type LIKE 'studio'" key="{e653fb24-169f-476d-a7ea-0f7fe1996f2b}" symbol="14" label="Studio"/>
           </rule>
-          <rule checkstate="0" filter="level_0 LIKE 1" key="{ebdd83f8-98ee-4233-a3c8-527a72f6205c}" symbol="15" label="Level 0">
-            <rule checkstate="0" filter="type like 'wall'" key="{10c28fa3-e740-4155-a913-0f08ab70345d}" symbol="16" label="wall"/>
-            <rule checkstate="0" filter="type like 'window'" key="{24ae6aa2-7ea9-498e-80b1-c00e954d54cf}" symbol="17" label="window"/>
-            <rule checkstate="0" filter="type LIKE 'room'" key="{4ed13ec8-8b21-4092-aa50-3612897ec716}" symbol="18" label="room"/>
-            <rule checkstate="0" filter="type LIKE 'studio'" key="{8fb8898c-10c9-4f9f-9cfe-4f0f2d5b5242}" symbol="19" label="Studio"/>
+          <rule filter="level_0 LIKE 1" key="{ebdd83f8-98ee-4233-a3c8-527a72f6205c}" symbol="15" label="Level 0">
+            <rule filter="type like 'wall'" key="{10c28fa3-e740-4155-a913-0f08ab70345d}" symbol="16" label="wall"/>
+            <rule filter="type like 'window'" key="{24ae6aa2-7ea9-498e-80b1-c00e954d54cf}" symbol="17" label="window"/>
+            <rule filter="type LIKE 'room'" key="{4ed13ec8-8b21-4092-aa50-3612897ec716}" symbol="18" label="room"/>
+            <rule filter="type LIKE 'studio'" key="{8fb8898c-10c9-4f9f-9cfe-4f0f2d5b5242}" symbol="19" label="Studio"/>
           </rule>
         </rules>
         <symbols>
@@ -1588,7 +1588,7 @@ def my_form_open(dialog, layer, feature):
       <excludeAttributesWMS/>
       <excludeAttributesWFS/>
       <attributeactions default="-1"/>
-      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="&quot;id&quot;" sortOrder="0">
+      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="&quot;id&quot;" sortOrder="1">
         <columns>
           <column width="-1" hidden="0" type="field" name="type"/>
           <column width="-1" hidden="0" type="field" name="room_id"/>
