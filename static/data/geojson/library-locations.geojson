@@ -1,0 +1,229 @@
+{
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "marker-ifxzk1jka",
+        "title": "St. Andrews",
+        "description": "2916 Broad River Rd, Columbia, SC 29210",
+        "marker-size": "medium",
+        "marker-color": "888e8f",
+        "marker-symbol": "library"
+      },
+      "geometry": {
+        "coordinates": [
+          -81.102758,
+          34.047822
+        ],
+        "type": "Point"
+      },
+      "id": "073bb90b29aeb6aabd6fd86f3bccc259"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "marker-ifxzlax0b",
+        "title": "Wheatley",
+        "description": "931 Woodrow St, Columbia, SC 29205",
+        "marker-size": "medium",
+        "marker-color": "#a65e38",
+        "marker-symbol": "library"
+      },
+      "geometry": {
+        "coordinates": [
+          -81.005498,
+          34.002232
+        ],
+        "type": "Point"
+      },
+      "id": "150fe5fe4810aa15723402965092e46c"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "marker-ifxzj38v9",
+        "title": "Southeast",
+        "description": "7421 Garners Ferry Rd, Columbia, SC 29209",
+        "marker-size": "medium",
+        "marker-color": "15bd7c",
+        "marker-symbol": "library"
+      },
+      "geometry": {
+        "coordinates": [
+          -80.94607,
+          33.968516
+        ],
+        "type": "Point"
+      },
+      "id": "18aa0d5864ac1f55fc76f64ec2343d34"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "marker-ifxzaqj94",
+        "title": "Eastover",
+        "description": "608 Main St, Eastover, SC 29044",
+        "marker-size": "medium",
+        "marker-color": "#173930",
+        "marker-symbol": "library"
+      },
+      "geometry": {
+        "coordinates": [
+          -80.694748,
+          33.877196
+        ],
+        "type": "Point"
+      },
+      "id": "21314d945aaed3e639eb3a072b4a3482"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "marker-ifxz61x01",
+        "title": "Ballentine",
+        "description": "1321 Dutch Fork Rd, Irmo, SC 29063",
+        "marker-size": "medium",
+        "marker-color": "#f84747",
+        "marker-symbol": "library"
+      },
+      "geometry": {
+        "coordinates": [
+          -81.235093,
+          34.124266
+        ],
+        "type": "Point"
+      },
+      "id": "413197396d8bbb62b373d5e0cb43d9a3"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Main",
+        "description": "1431 Assembly St, Columbia, SC 29201",
+        "marker-size": "large",
+        "marker-color": "0199BE",
+        "marker-symbol": "library"
+      },
+      "geometry": {
+        "coordinates": [
+          -81.0374,
+          34.0042
+        ],
+        "type": "Point"
+      },
+      "id": "50543f14195e077ad3ecf81c40a6bf07"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Edgewood",
+        "description": "2101 Oak St, Columbia, SC 29204",
+        "marker-color": "#40347d"
+      },
+      "geometry": {
+        "coordinates": [
+          -81.021209,
+          34.017889
+        ],
+        "type": "Point"
+      },
+      "id": "8727d282490a66e2954599990d71f0cc"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "marker-ifxzeg886",
+        "title": "North Main",
+        "description": "5306 N Main St, Columbia, SC 29203",
+        "marker-size": "medium",
+        "marker-color": "#90c8d0",
+        "marker-symbol": "library"
+      },
+      "geometry": {
+        "coordinates": [
+          -81.021881,
+          34.052259
+        ],
+        "type": "Point"
+      },
+      "id": "9c59d82ad972b8647c3feb5224ac9fc0"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "marker-ifxzfrxf7",
+        "title": "Northeast",
+        "description": "7490 Parklane Rd, Columbia, SC 29223",
+        "marker-size": "medium",
+        "marker-color": "ff5d00",
+        "marker-symbol": "library"
+      },
+      "geometry": {
+        "coordinates": [
+          -80.957776,
+          34.076023
+        ],
+        "type": "Point"
+      },
+      "id": "c96be659560a4d00102d39f6258e0b3b"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "marker-ifxzgx818",
+        "title": "Sandhills",
+        "description": "1 Summit Pkwy, Columbia, SC 29229",
+        "marker-size": "medium",
+        "marker-color": "66cb66",
+        "marker-symbol": "library"
+      },
+      "geometry": {
+        "coordinates": [
+          -80.882778,
+          34.140181
+        ],
+        "type": "Point"
+      },
+      "id": "e3f2b48f3adafeeda093b946ff88a153"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "marker-ifxz81yk2",
+        "title": "Blythewood",
+        "description": "218 McNulty St, Blythewood, SC 290163",
+        "marker-size": "medium",
+        "marker-color": "#14c7bd",
+        "marker-symbol": "library"
+      },
+      "geometry": {
+        "coordinates": [
+          -80.976817,
+          34.216132
+        ],
+        "type": "Point"
+      },
+      "id": "ebd5e4f4734f263763eae40434fad2bf"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "marker-ifxz9la73",
+        "title": "Cooper",
+        "description": "5317 N Trenholm Rd, Columbia, SC 29206",
+        "marker-size": "medium",
+        "marker-color": "#ae64cc",
+        "marker-symbol": "library"
+      },
+      "geometry": {
+        "coordinates": [
+          -80.966601,
+          34.021546
+        ],
+        "type": "Point"
+      },
+      "id": "edcafd78d8b2e091ddb0fde9e8f130ad"
+    }
+  ],
+  "type": "FeatureCollection"
+}
