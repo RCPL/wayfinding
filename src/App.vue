@@ -1,13 +1,10 @@
 <template>
 	<main>
 		<UnderConstruction/>
-		<!-- <FloorMaps/> -->
-		
 		<Map style="height:40vh"/>
 		<!-- <img src="../static/img/logo-md.svg"> -->
 		<Clock/>
 		<EventList style="padding:5vw; flex:1"/>
-		
 		
 	</main>
 </template>

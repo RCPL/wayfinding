@@ -12,7 +12,7 @@
     </div>
 
     <div class="up-or-down">
-      <div v-if="floor > 0">{{floor}}</div>
+      <div v-if="eventData.floor > 0">{{eventData.floor}}</div>
       <div v-else>G</div>
       <svg viewBox="0 0 128 96">
         <path d="M 0,96 64,0 128,96 Z" v-if="up"/>
@@ -23,25 +23,19 @@
 </template>
 
 <script>
-import config from '../config'
-import evancedRooms from '../../static/data/evancedRooms.json'
 export default {
   name: 'EventItem',
   props: ['eventData'],
   computed: {
-    floor: function() {return evancedRooms[this.eventData.library][this.eventData.location].floor || '-1' },
-    room_id: function() {return evancedRooms[this.eventData.library][this.eventData.location].id || '-1' },
-    up: function() {return this.floor > config.kioskFloor},
-    down: function() {return this.floor < config.kioskFloor}
-
+    up: function() {return this.eventData.floor > this.$store.state.floor},
+    down: function() {return this.eventData.floor < this.$store.state.floor}
   },
   methods: {
     tapped() {
-      // //console.log('you just tapped', this.eventData.location)
-      // let room = this.eventData.location;
-      // let lib = this.eventData.library;
-      // console.log(evancedRooms[lib][room])
-      console.log(this.room_id, this.floor)
+      this.$store.commit('select',{
+        room_id: this.eventData.room_id,
+        floor: this.eventData.floor
+      })
     }
   }
 }

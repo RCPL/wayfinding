@@ -2,39 +2,36 @@
   <div class="map-module">
     <div id="map" style='width: 100%; height: 100%;'></div>
     <nav>
-      <div @touchstart="getLevel(3)" :class="{viewing: viewing_floor === 3, your_level: kiosk_floor === 3}">3</div>
-      <div @touchstart="getLevel(2)" :class="{viewing: viewing_floor === 2, your_level: kiosk_floor === 2}">2</div>
-      <div @touchstart="getLevel(1)" :class="{viewing: viewing_floor === 1, your_level: kiosk_floor === 1}">1</div>
-      <div @touchstart="getLevel(0)" :class="{viewing: viewing_floor === 0, your_level: kiosk_floor === 0}">G</div>
+      <div @touchstart="getLevel(3)" :class="{viewing: floor === 3, your_level: kiosk_floor === 3}">3</div>
+      <div @touchstart="getLevel(2)" :class="{viewing: floor === 2, your_level: kiosk_floor === 2}">2</div>
+      <div @touchstart="getLevel(1)" :class="{viewing: floor === 1, your_level: kiosk_floor === 1}">1</div>
+      <div @touchstart="getLevel(0)" :class="{viewing: floor === 0, your_level: kiosk_floor === 0}">G</div>
     </nav>
   </div>
 </template>
 
 <script>
+  import { mapState } from 'vuex'
+
   mapboxgl.accessToken = 'pk.eyJ1IjoicmljaGxhbmRsaWJyYXJ5IiwiYSI6ImNpZnh5cDZ1NTRwbGN1dW0wcmhjMWZ3MHYifQ.gqkQbN_FAgHPRVsL6Vi-lA';
   var map;
-  var resetTimer;
-
-  var defaults = {
-    zoom: 18.3,
-    bearing: -70,
-    center: {lng: -81.03735096824548, lat: 34.004175572139815}
-  }
 
   export default {
     name: 'map-module',
-    data() { return {
-      kiosk_floor: 1,
-      kiosk_coordinates: [],
-      viewing_floor: 1
-    }},
+    computed: mapState ({
+      kiosk_floor: state => state.defaults.floor,
+      floor: 'floor',
+      zoom: 'zoom',
+      bearing: 'bearing',
+      center: 'center'
+    }),
     mounted: function() {
       map = new mapboxgl.Map({
           container: this.$el.querySelector('#map'),
           style: 'mapbox://styles/mapbox/light-v9',
-          zoom: defaults.zoom,
-          center: defaults.center,
-          bearing: defaults.bearing,
+          zoom: this.zoom,
+          center: this.center,
+          bearing: this.bearing,
           pitch:25
       });
 
@@ -134,9 +131,9 @@
           console.log('reset the map')
           map.flyTo({
               duration:30000,
-              zoom: defaults.zoom,
-              center: defaults.center,
-              bearing: defaults.bearing,
+              zoom: this.zoom,
+              center: this.center,
+              bearing: this.bearing,
               pitch: 25
           })
         },3000)
@@ -148,8 +145,10 @@
     },
     methods: {
       getLevel: function(levelNumber) {
-        this.viewing_floor = levelNumber;
-        console.log('set the level filter to',levelNumber)
+        this.$store.commit('select',{
+          floor: levelNumber
+        })
+        // console.log('set the level filter to',levelNumber)
         map.setFilter('areas',
         [
           'all',
@@ -192,10 +191,10 @@
   }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   .map-module{
     position:relative;
-  }
+
   nav {
     position: absolute;
     bottom:20%;

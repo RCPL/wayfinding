@@ -8,6 +8,7 @@
   import xml2js from 'xml2js'
   import moment from 'moment'
   import vueinterval from 'vue-interval/dist/VueInterval.common'
+  import evancedRooms from '../../static/data/evancedRooms.json'
 
   import EventItem from './EventItem'
 
@@ -34,7 +35,7 @@
     })
 
     // clean the data so that it's actually useful
-    eventArray.forEach( (eventItem) => {
+    eventArray.forEach( eventItem => {
 
       // the end date isn't set when it's the same as the start date
       eventItem.enddate = eventItem.enddate || eventItem.date
@@ -48,6 +49,20 @@
       }else{
         eventItem.iso_start = new Date(eventItem.date + ' ' + eventItem.time);
         eventItem.iso_end = new Date(eventItem.enddate + ' ' + eventItem.endtime);
+      }
+      
+      // create floor number and room ID from evanced lookup object
+      eventItem.floor = -1;
+      eventItem.room_id = -1;
+      if(evancedRooms[eventItem.library] !== undefined) {
+        if(evancedRooms[eventItem.library][eventItem.location] !== undefined){
+          eventItem.floor = evancedRooms[eventItem.library][eventItem.location].floor
+          eventItem.room_id = evancedRooms[eventItem.library][eventItem.location].id
+        }else{
+          console.error(`no room for /${eventItem.location}/`)
+        }
+      }else{
+        console.error(`no library for /${eventItem.library}/`)
       }
 
       // boolean if the event is currently happening
@@ -63,6 +78,9 @@
 
     // just the events that are still happening
     eventArray = eventArray.filter(event => event.iso_end >= (new Date()))
+
+    // remove parking spaces
+    eventArray = eventArray.filter(event => event.location !== 'Reserved Parking Spot 2')
 
     // sort by start time then end time
     eventArray = eventArray.sort(function(a,b){

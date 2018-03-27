@@ -44,14 +44,13 @@
     "Meeting Space 208": {"floor":2, "id":2234},
     "Meeting Space 209": {"floor":2, "id":2235},
     "Meeting Space 210": {"floor":2, "id":2236},
-    "Meeting Space 211": {"floor":2, "id":2237},
+    "Writer's Room 211": {"floor":2, "id":2237},
     "Meeting Space 213": {"floor":2, "id":2246},
     "Meeting Space 214": {"floor":2, "id":2245},
+    "Studio 221": {"floor":2, "id":-1},
+    "Networking Center": {"floor":3, "id":-1},
 
     "Post Production Lab": {"floor":2, "id":-1},
     "Production Stage": {"floor":2, "id":-1}
-
-    
-    
   }
 }
