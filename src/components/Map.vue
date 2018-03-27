@@ -117,9 +117,11 @@
           ]
         });
 
-        var youAreHere = new mapboxgl.Marker()
-          .setLngLat([-81.03723837967836, 34.00443466613849])
-          .addTo(map);
+      var mkr = document.createElement('div');
+      mkr.className = 'marker'
+      var youAreHere = new mapboxgl.Marker(mkr)
+        .setLngLat([-81.03723837967836, 34.00443466613849])
+        .addTo(map);
       });
 
       map.on('touchstart', function(e){
@@ -195,29 +197,38 @@
   .map-module{
     position:relative;
 
-  nav {
-    position: absolute;
-    bottom:20%;
-    right:5vw;
-    background-color:white;
-    border-radius: 1em;
-    display:flex;
-    flex-direction: column;
-    text-align:center;
-    overflow:hidden;
-  }
-  nav > *{
-    padding:0.5em;
-  }
-  .viewing{
-    background-color:cyan;
-  }
-  .your_level{
-    background-color: red;
-    font-weight: 800;
-    color: white;
-  }
+    nav {
+      position: absolute;
+      bottom:20%;
+      right:5vw;
+      background-color:white;
+      border-radius: 1em;
+      display:flex;
+      flex-direction: column;
+      text-align:center;
+      overflow:hidden;
+    }
+    nav > *{
+      padding:0.5em;
+    }
+    .viewing{
+      background-color:cyan;
+    }
+    .your_level{
+      background-color: red;
+      font-weight: 800;
+      color: white;
+    }
 
+    .marker{
+      background-image: url('/static/img/you.svg');
+      background-size:cover;
+      width:2rem;
+      height:2rem;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+  }
 
   $room:rgb(194, 202, 186);
   $room_focus: rgb(47, 140, 216);
