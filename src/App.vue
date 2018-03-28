@@ -1,7 +1,7 @@
 <template>
 	<main>
-		<UnderConstruction/>
-		<Map style="height:40vh"/>
+		<!-- <UnderConstruction/> -->
+		<Map style="height:33vh"/>
 		<!-- <img src="../static/img/logo-md.svg"> -->
 		<Clock/>
 		<EventList style="padding:5vw; flex:1"/>

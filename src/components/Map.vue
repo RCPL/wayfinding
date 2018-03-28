@@ -25,6 +25,11 @@
       bearing: 'bearing',
       center: 'center'
     }),
+    watch: {
+      floor: function() {
+        this.getLevel(floor)
+      }
+    },
     mounted: function() {
       map = new mapboxgl.Map({
           container: this.$el.querySelector('#map'),

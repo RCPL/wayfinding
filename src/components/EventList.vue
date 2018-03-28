@@ -13,12 +13,13 @@
   import EventItem from './EventItem'
 
     async function getList(reservations) {
-    // room reserve
+    // Room Reserve
     // http://host6.evanced.info/richland/evanced/eventsxml.asp?nd=7&roominfo=1&loc=Meeting%20Space%20211&dm=rss2
     
-    // events
+    // Events
     // 'https://host6.evanced.info/richland/evanced/eventsxml.asp?lib=all&nd=1&alltime=0&dm=exml'
 
+    // How to fetch XML
     // https://stackoverflow.com/a/41009103
     const url = `https://host6.evanced.info/richland/evanced/eventsxml.asp?lib=0&nd=1&alltime=1&roominfo=${reservations}&dm=xml`
     let xmlString = await fetch(url)

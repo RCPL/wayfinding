@@ -11,7 +11,7 @@
       <h3>{{eventData.location}}</h3>
     </div>
 
-    <div class="up-or-down">
+    <div class="up-or-down" v-if="up || down">
       <div v-if="eventData.floor > 0">{{eventData.floor}}</div>
       <div v-else>G</div>
       <svg viewBox="0 0 128 96">
