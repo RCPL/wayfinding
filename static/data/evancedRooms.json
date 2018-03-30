@@ -48,6 +48,7 @@
     "Meeting Space 213": {"floor":2, "id":2246},
     "Meeting Space 214": {"floor":2, "id":2245},
     "Studio 221": {"floor":2, "id":-1},
+    "Children's Craft Area": {"floor":0, "id":-1},
     "Networking Center": {"floor":3, "id":-1},
 
     "Post Production Lab": {"floor":2, "id":-1},

@@ -35,6 +35,10 @@
       }
     })
 
+    // remove parking spaces
+    eventArray = eventArray.filter(event => event.location !== 'Reserved Parking Spot 1')
+    eventArray = eventArray.filter(event => event.location !== 'Reserved Parking Spot 2')
+
     // clean the data so that it's actually useful
     eventArray.forEach( eventItem => {
 
@@ -51,7 +55,7 @@
         eventItem.iso_start = new Date(eventItem.date + ' ' + eventItem.time);
         eventItem.iso_end = new Date(eventItem.enddate + ' ' + eventItem.endtime);
       }
-      
+
       // create floor number and room ID from evanced lookup object
       eventItem.floor = -1;
       eventItem.room_id = -1;
@@ -80,8 +84,7 @@
     // just the events that are still happening
     eventArray = eventArray.filter(event => event.iso_end >= (new Date()))
 
-    // remove parking spaces
-    eventArray = eventArray.filter(event => event.location !== 'Reserved Parking Spot 2')
+
 
     // sort by start time then end time
     eventArray = eventArray.sort(function(a,b){
