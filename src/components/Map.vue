@@ -2,11 +2,12 @@
   <div class="map-module">
     <div id="map" style='width: 100%; height: 100%;'></div>
     <nav>
-      <div @touchstart="getLevel(3)" :class="{viewing: floor === 3, your_level: kiosk_floor === 3}">3</div>
-      <div @touchstart="getLevel(2)" :class="{viewing: floor === 2, your_level: kiosk_floor === 2}">2</div>
-      <div @touchstart="getLevel(1)" :class="{viewing: floor === 1, your_level: kiosk_floor === 1}">1</div>
-      <div @touchstart="getLevel(0)" :class="{viewing: floor === 0, your_level: kiosk_floor === 0}">G</div>
+      <div @touchstart="setLevel(3)" :class="{'viewing': floor === 3, 'you-are-here': defaultFloor === 3}">3</div>
+      <div @touchstart="setLevel(2)" :class="{'viewing': floor === 2, 'you-are-here': defaultFloor === 2}">2</div>
+      <div @touchstart="setLevel(1)" :class="{'viewing': floor === 1, 'you-are-here': defaultFloor === 1}">1</div>
+      <div @touchstart="setLevel(0)" :class="{'viewing': floor === 0, 'you-are-here': defaultFloor === 0}">G</div>
     </nav>
+    <div class="overlay">Richland Library Main / Level {{defaultFloor}}</div>
   </div>
 </template>
 
@@ -19,15 +20,15 @@
   export default {
     name: 'map-module',
     computed: mapState ({
-      kiosk_floor: state => state.defaults.floor,
+      defaultFloor: state => state.defaults.floor,
       floor: 'floor',
       zoom: 'zoom',
       bearing: 'bearing',
       center: 'center'
     }),
     watch: {
-      floor: function() {
-        this.getLevel(floor)
+      floor: function(){
+        this.renderFloor()
       }
     },
     mounted: function() {
@@ -151,15 +152,16 @@
       })
     },
     methods: {
-      getLevel: function(levelNumber) {
-        this.$store.commit('select',{
-          floor: levelNumber
-        })
+      setLevel: function(levelNumber) {
+        this.$store.commit('select',{ floor: levelNumber })
+      },
+      renderFloor: function() {
+
         // console.log('set the level filter to',levelNumber)
         map.setFilter('areas',
         [
           'all',
-          ['==',`level_${levelNumber}`,1],
+          ['==',`level_${this.floor}`,1],
           [
             'any',
             ['!=','type','wall'],
@@ -172,7 +174,7 @@
         map.setFilter('walls',
         [
           'all',
-          ['==',`level_${levelNumber}`,1],
+          ['==',`level_${this.floor}`,1],
           [
             'any',
             ['==','type','wall'],
@@ -183,14 +185,14 @@
         map.setFilter('windows',
         [
           'all',
-          ['==',`level_${levelNumber}`,1],
+          ['==',`level_${this.floor}`,1],
           ['==','type','window'],
         ]);
 
         map.setFilter('labels',
         [
           'all',
-          ['==',`level_${levelNumber}`,1],
+          ['==',`level_${this.floor}`,1],
           ['!=','staff',1]
         ]);
       }
@@ -199,6 +201,9 @@
 </script>
 
 <style lang="scss">
+  $you: rgb(189, 15, 73);
+  $viewing: rgb(171, 240, 81);
+
   .map-module{
     position:relative;
 
@@ -217,10 +222,10 @@
       padding:0.5em;
     }
     .viewing{
-      background-color:cyan;
+      background-color: $viewing;
     }
-    .your_level{
-      background-color: red;
+    .you-are-here{
+      background-color: $you;
       font-weight: 800;
       color: white;
     }
@@ -232,6 +237,18 @@
       height:2rem;
       border-radius: 50%;
       cursor: pointer;
+    }
+
+    .overlay{
+      position:absolute;
+      bottom:0;
+      background-color: $you;
+      z-index:2000;
+      width:100%;
+      font-size:2rem;
+      color:white;
+      padding:0.5em 2vw;
+      font-weight:800;
     }
   }
 

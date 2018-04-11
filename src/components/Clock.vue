@@ -27,7 +27,7 @@
       INTERVAL__30000$updateClock: function(){
         this.currentTime = moment().format('h:mm A')
         this.currentDate = moment().format('dddd, MMMM D')
-        console.log('clock updated');
+        // console.log('clock updated');
       }
     }
   }
@@ -38,7 +38,7 @@
     display:flex;
     flex-direction:row;
     background-color: rgb(14, 119, 151);
-    padding:0.5em 1em;
+    padding:0.5em 2vw;
     color:white;
     font-size:155%;
   }

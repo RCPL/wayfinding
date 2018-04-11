@@ -1,6 +1,11 @@
 <template>
   <div class="eventList">
-    <EventItem v-for="event in events" :key="event.id" :eventData="event"/>
+    <div>
+      <EventItem v-for="event in now" :key="event.id" :eventData="event"/>
+    </div>
+    <div class="sub-list">
+      <EventItem v-for="event in later" :key="event.id" :eventData="event"/>
+    </div>
   </div>
 </template>
 
@@ -106,6 +111,10 @@
         events: []
       }
     },
+    computed: {
+      now: function(){ return this.events.filter(event => event.now)},
+      later: function(){ return this.events.filter(event => !event.now)}
+    },
     mixins:[vueinterval],
     components: {EventItem},
     methods: {
@@ -124,5 +133,9 @@
 <style lang="scss" scoped>
   .eventList{
     overflow-y: scroll;
+  }
+
+  .sub-list{
+    padding:0.5em 2vw;
   }
 </style>

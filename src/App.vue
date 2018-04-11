@@ -1,10 +1,10 @@
 <template>
 	<main>
 		<!-- <UnderConstruction/> -->
-		<Map style="height:33vh"/>
+		<Map style="height:50vh"/>
 		<!-- <img src="../static/img/logo-md.svg"> -->
 		<Clock/>
-		<EventList style="padding:5vw; flex:1"/>
+		<EventList style="flex:1"/>
 		
 	</main>
 </template>

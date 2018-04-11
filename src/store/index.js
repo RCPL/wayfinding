@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
+// the current state
 var state = {
   floor: 1,
   zoom: 18.3,
@@ -11,7 +12,8 @@ var state = {
   room_id: -1
 }
 
-state.defaults = new Object(state)
+// the defaults, stored within the current state, (and eventually local storage or firebase or etc)
+state.defaults = JSON.parse(JSON.stringify(state))
 
 export default new Vuex.Store({
   state: state,
@@ -25,4 +27,4 @@ export default new Vuex.Store({
   }
 })
 
-// TODO: add a reset timer
+// TODO: add a reset timer ... use lodash debounce?
