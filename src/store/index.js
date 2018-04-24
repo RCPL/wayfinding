@@ -9,7 +9,9 @@ var state = {
   zoom: 18.3,
   bearing: -70,
   center: {lng: -81.03735096824548, lat: 34.004175572139815},
-  room_id: -1
+  room_id: undefined,
+  event_id: undefined,
+  cameraChange: false
 }
 
 // the defaults, stored within the current state, (and eventually local storage or firebase or etc)
@@ -22,7 +24,15 @@ export default new Vuex.Store({
       for(var key in payload){
         state[key] = payload[key]
       }
-      // console.log('selection',state)
+      console.log('selection',state)
+      dispatch('autoReset')
+    }
+  },
+  actions: {
+    autoReset ({ commit }) {
+      setTimeout(() => {
+        commit('select', state.defaults)
+      }, 1000)
     }
   }
 })

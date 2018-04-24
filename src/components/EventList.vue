@@ -1,3 +1,39 @@
+<!--
+EVANCED API
+http://host6.evanced.info/richland/evanced/eventsxml.asp?
+
+dm=
+  rss2
+  xml
+  exml
+
+lib=
+  all
+  0 Main
+  1 Ballentine
+  2 Blythewood
+  3 Cooper
+  4 Eastover",
+  5 North Main",
+  6 Northeast",
+  7 Sandhills",
+  8 Southeast",
+  9 St. Andrews",
+  10 Wheatley",
+  11 Richland Library Operations Center",
+  19 Coworking Center
+  21 Coworking Center Mac Station
+
+loc=Meeting%20Space%20211 (Meeting Space 211)
+
+roominfo=1
+alltime=1
+
+nd=7
+startdate=03-08-2018
+enddate=03-24-2018
+-->
+
 <template>
   <div class="eventList">
     <div>
@@ -18,11 +54,6 @@
   import EventItem from './EventItem'
 
     async function getList(reservations) {
-    // Room Reserve
-    // http://host6.evanced.info/richland/evanced/eventsxml.asp?nd=7&roominfo=1&loc=Meeting%20Space%20211&dm=rss2
-    
-    // Events
-    // 'https://host6.evanced.info/richland/evanced/eventsxml.asp?lib=all&nd=1&alltime=0&dm=exml'
 
     // How to fetch XML
     // https://stackoverflow.com/a/41009103

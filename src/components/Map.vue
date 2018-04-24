@@ -29,6 +29,18 @@
     watch: {
       floor: function(){
         this.renderFloor()
+      },
+      cameraChange: function(){
+        if(state.cameraChange){
+          this.$store.commit('select',{ cameraChange: false })
+          map.flyTo({
+            duration:30000,
+            zoom: this.zoom,
+            center: this.center,
+            bearing: this.bearing,
+            pitch: 25
+          })
+        }
       }
     },
     mounted: function() {
@@ -124,27 +136,14 @@
         });
 
       var mkr = document.createElement('div');
-      mkr.className = 'marker'
+      mkr.className = 'marker you-are-here'
       var youAreHere = new mapboxgl.Marker(mkr)
         .setLngLat([-81.03723837967836, 34.00443466613849])
         .addTo(map);
       });
 
-      map.on('touchstart', function(e){
-        clearTimeout(resetTimer);
-      });
-      map.on('touchend', function(e){
-        clearTimeout(resetTimer);
-        resetTimer = setTimeout(()=>{
-          console.log('reset the map')
-          map.flyTo({
-              duration:30000,
-              zoom: this.zoom,
-              center: this.center,
-              bearing: this.bearing,
-              pitch: 25
-          })
-        },3000)
+      map.on('touchend', () => {
+        this.$store.dispatch('autoReset')
       });
 
       map.on('click', function(e){
@@ -244,7 +243,7 @@
       bottom:0;
       background-color: $you;
       z-index:2000;
-      width:100%;
+      width:96vw;
       font-size:2rem;
       color:white;
       padding:0.5em 2vw;
