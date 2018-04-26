@@ -7,7 +7,7 @@
       <div @touchstart="setLevel(1)" :class="{'viewing': floorViewing === 1, 'you-are-here': floorStanding === 1}">1</div>
       <div @touchstart="setLevel(0)" :class="{'viewing': floorViewing === 0, 'you-are-here': floorStanding === 0}">G</div>
     </nav>
-    <div class="overlay">Richland Library Main / Level {{floorStanding}}</div>
+    <div class="overlay">You are on Level {{floorStanding}}</div>
   </div>
 </template>
 
@@ -26,18 +26,14 @@
       zoom: 'zoom',
       bearing: 'bearing',
       center: 'center',
-      resetCamera: 'resetCamera'
+      defaultMode: 'defaultMode'
     }),
     watch: {
       floorViewing() {
         this.renderFloor()
       },
-      resetCamera(e) {
-        // console.log(e)
-        // console.log('cam var',this.$store.resetCamera)
+      defaultMode(e) {
         if(e){
-          console.log('resetting')
-          this.$store.commit('set',{ resetCamera: false })
           map.flyTo({
             duration:30000,
             zoom: this.zoom,
@@ -253,6 +249,7 @@
       color:white;
       padding:0.5em 2vw;
       font-weight:800;
+      text-align:center;
     }
   }
 

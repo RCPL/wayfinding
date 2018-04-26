@@ -23,8 +23,19 @@
       }
     },
     computed: {
+      defaultMode: function(){ return this.$store.state.defaultMode },
       now: function(){ return this.events.filter(event => event.now)},
       later: function(){ return this.events.filter(event => !event.now)}
+    },
+    watch: {
+      defaultMode(e){
+        if(e){
+          this.$el.scrollTop = 0
+        }
+      }
+    },
+    mounted(){
+      console.log(this.$el)
     },
     mixins:[vueinterval],
     components: {EventItem},

@@ -11,10 +11,10 @@ const store = new Vuex.Store({
     floorViewing: 1,
     zoom: 18.3,
     bearing: -70,
-    center: {lng: -81.03735096824548, lat: 34.004175572139815},
+    center: {lng: -81.03730200444548, lat: 34.00414146587417},
     room_id: undefined,
     event_id: undefined,
-    resetCamera: false
+    defaultMode: true
   },
   mutations: {
     set(state,payload) {
@@ -23,7 +23,6 @@ const store = new Vuex.Store({
       }
     },
     userSet(state,payload){
-      console.log('userSet')
       this.commit('set',payload)
       resetState()
     }
@@ -40,15 +39,14 @@ export default store;
 // the defaults, stored within the current state, (and eventually local storage or firebase or etc)
 const defaultState = JSON.parse(JSON.stringify(store.state))
 
-
 function resetState() {
-  console.log('...')
+  store.commit('set', {defaultMode:false})
   clearTimeout(debouncer);
   debouncer = setTimeout(function(){
     console.log('!!!')
     let s = defaultState
-    s.resetCamera = true;
+    s.defaultMode = true;
     store.commit('set', s)
     //console.log(store)
-  },15000)
+  },10000)
 }
