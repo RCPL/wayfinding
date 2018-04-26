@@ -1,11 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import _ from 'lodash'
 
 Vue.use(Vuex)
 
 // the current state
 var state = {
-  floor: 1,
+  floorStanding: 1,
+  floorViewing: 1,
   zoom: 18.3,
   bearing: -70,
   center: {lng: -81.03735096824548, lat: 34.004175572139815},
@@ -15,26 +17,32 @@ var state = {
 }
 
 // the defaults, stored within the current state, (and eventually local storage or firebase or etc)
-state.defaults = JSON.parse(JSON.stringify(state))
+const defaults = JSON.parse(JSON.stringify(state))
 
 export default new Vuex.Store({
   state: state,
   mutations: {
-    select(state,payload){
+    set(state,payload) {
       for(var key in payload){
         state[key] = payload[key]
       }
-      console.log('selection',state)
-      dispatch('autoReset')
+    },
+    userSet(state,payload){
+      this.commit('set',payload)
+      this.dispatch('used')
     }
   },
   actions: {
-    autoReset ({ commit }) {
-      setTimeout(() => {
-        commit('select', state.defaults)
-      }, 1000)
+    used() {
+      console.log('debunce',debounce)
+      _.debounce(function() {
+        console.log('i run?')
+        this.$store.dispatch('setDefaults')
+      }, 100)
+    },
+    setDefaults () {
+      console.log('resetting')
+      this.commit('set', state.defaults)
     }
   }
 })
-
-// TODO: add a reset timer ... use lodash debounce?

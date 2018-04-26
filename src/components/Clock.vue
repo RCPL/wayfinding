@@ -7,7 +7,7 @@
 </template>
 
 <script>
-  import moment from 'moment'
+  import { DateTime } from "luxon"
   import vueinterval from 'vue-interval/dist/VueInterval.common'
   // import Weather from './Weather'
   export default {
@@ -25,8 +25,8 @@
     },
     methods: {
       INTERVAL__30000$updateClock: function(){
-        this.currentTime = moment().format('h:mm A')
-        this.currentDate = moment().format('dddd, MMMM D')
+        this.currentTime = DateTime.local().toFormat('h:mm a')
+        this.currentDate = DateTime.local().toFormat('cccc, MMMM d')
         // console.log('clock updated');
       }
     }

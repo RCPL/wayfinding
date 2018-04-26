@@ -2,37 +2,39 @@
   <div class="map-module">
     <div id="map" style='width: 100%; height: 100%;'></div>
     <nav>
-      <div @touchstart="setLevel(3)" :class="{'viewing': floor === 3, 'you-are-here': defaultFloor === 3}">3</div>
-      <div @touchstart="setLevel(2)" :class="{'viewing': floor === 2, 'you-are-here': defaultFloor === 2}">2</div>
-      <div @touchstart="setLevel(1)" :class="{'viewing': floor === 1, 'you-are-here': defaultFloor === 1}">1</div>
-      <div @touchstart="setLevel(0)" :class="{'viewing': floor === 0, 'you-are-here': defaultFloor === 0}">G</div>
+      <div @touchstart="setLevel(3)" :class="{'viewing': floorViewing === 3, 'you-are-here': floorStanding === 3}">3</div>
+      <div @touchstart="setLevel(2)" :class="{'viewing': floorViewing === 2, 'you-are-here': floorStanding === 2}">2</div>
+      <div @touchstart="setLevel(1)" :class="{'viewing': floorViewing === 1, 'you-are-here': floorStanding === 1}">1</div>
+      <div @touchstart="setLevel(0)" :class="{'viewing': floorViewing === 0, 'you-are-here': floorStanding === 0}">G</div>
     </nav>
-    <div class="overlay">Richland Library Main / Level {{defaultFloor}}</div>
+    <div class="overlay">Richland Library Main / Level {{floorStanding}}</div>
   </div>
 </template>
 
 <script>
   import { mapState } from 'vuex'
 
-  mapboxgl.accessToken = 'pk.eyJ1IjoicmljaGxhbmRsaWJyYXJ5IiwiYSI6ImNpZnh5cDZ1NTRwbGN1dW0wcmhjMWZ3MHYifQ.gqkQbN_FAgHPRVsL6Vi-lA';
+  mapboxgl.accessToken = 'pk.eyJ1IjoicmljaGxhbmRsaWJyYXJ5IiwiYSI6ImNpZnh5cDZ1NTRwbGN1dW0wcmhjMWZ3MHYifQ.gqkQbN_FAgHPRVsL6Vi-lA'
   var map;
 
   export default {
     name: 'map-module',
     computed: mapState ({
-      defaultFloor: state => state.defaults.floor,
-      floor: 'floor',
+      // defaultFloor: state => state.defaults.floor,
+      floorStanding: 'floorStanding',
+      floorViewing: 'floorViewing',
       zoom: 'zoom',
       bearing: 'bearing',
       center: 'center'
     }),
     watch: {
-      floor: function(){
+      floorViewing: function(){
         this.renderFloor()
       },
       cameraChange: function(){
         if(state.cameraChange){
-          this.$store.commit('select',{ cameraChange: false })
+          this.$store.commit('set',{ cameraChange: false })
+          console.log('caught camera');
           map.flyTo({
             duration:30000,
             zoom: this.zoom,
@@ -143,7 +145,7 @@
       });
 
       map.on('touchend', () => {
-        this.$store.dispatch('autoReset')
+        this.$store.dispatch('used')
       });
 
       map.on('click', function(e){
@@ -152,7 +154,7 @@
     },
     methods: {
       setLevel: function(levelNumber) {
-        this.$store.commit('select',{ floor: levelNumber })
+        this.$store.commit('userSet',{ floorViewing: levelNumber })
       },
       renderFloor: function() {
 
@@ -160,7 +162,7 @@
         map.setFilter('areas',
         [
           'all',
-          ['==',`level_${this.floor}`,1],
+          ['==',`level_${this.floorViewing}`,1],
           [
             'any',
             ['!=','type','wall'],
@@ -173,7 +175,7 @@
         map.setFilter('walls',
         [
           'all',
-          ['==',`level_${this.floor}`,1],
+          ['==',`level_${this.floorViewing}`,1],
           [
             'any',
             ['==','type','wall'],
@@ -184,14 +186,14 @@
         map.setFilter('windows',
         [
           'all',
-          ['==',`level_${this.floor}`,1],
+          ['==',`level_${this.floorViewing}`,1],
           ['==','type','window'],
         ]);
 
         map.setFilter('labels',
         [
           'all',
-          ['==',`level_${this.floor}`,1],
+          ['==',`level_${this.floorViewing}`,1],
           ['!=','staff',1]
         ]);
       }

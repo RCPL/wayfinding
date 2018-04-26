@@ -14,14 +14,14 @@
     </div>
 
     <div class="up-or-down" v-if="(up || down) && eventData.now">
-      <div v-if="eventData.floor > 0">{{eventData.floor}}</div>
-      <div v-else>G</div>
+      <span v-if="eventData.floor > 0">{{eventData.floor}}</span>
+      <span v-else>G</span>
       <svg viewBox="0 0 128 96">
         <path d="M 0,96 64,0 128,96 Z" v-if="up"/>
         <path d="M 0,0 64,96 128,0 Z" v-if="down"/>
       </svg>
-      <sup v-if="up">Up</sup>
-      <sub v-if="down">Dn</sub>
+      <span class="sup" v-if="up">Up</span>
+      <span class="sub" v-if="down">Dn</span>
     </div>
   </section>  
 </template>
@@ -31,14 +31,14 @@ export default {
   name: 'EventItem',
   props: ['eventData'],
   computed: {
-    up: function() {return this.eventData.floor > this.$store.state.floor},
-    down: function() {return this.eventData.floor < this.$store.state.floor}
+    up: function() {return this.eventData.floor > this.$store.state.floorStanding},
+    down: function() {return this.eventData.floor < this.$store.state.floorStanding}
   },
   methods: {
     tapped() {
-      this.$store.commit('select',{
+      this.$store.commit('userSet',{
         room_id: this.eventData.room_id,
-        floor: this.eventData.floor
+        floorViewing: this.eventData.floor
       })
     }
   }
@@ -63,23 +63,31 @@ export default {
   }
 
   .up-or-down {
-    display:flex;
-    flex-direction: row;
-    text-align: right;
+    // display:flex;
+    // flex-direction: row;
+    // text-align: right;
     font-size:2rem;
     font-weight:900;
     padding-top: 1rem;
     svg {
       height:1em;
       width:auto;
-      padding-top:0.125em;
+      vertical-align:middle;
+      margin-bottom:0.25em;
+      margin-left:-0.2em;
       path{
         fill: white;
       }
     }
-    sup,sub {
+    .sup,.sub {
       font-size:50%;
-      margin-left:-0.5em;
+      margin-left:-0.75em;
+    }
+    .sup{
+      vertical-align:text-top;
+    }
+    .sub{
+      vertical-align:baseline;
     }
   }
 
