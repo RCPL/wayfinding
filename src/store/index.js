@@ -1,26 +1,21 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import _ from 'lodash'
 
 Vue.use(Vuex)
 
-// the current state
-var state = {
-  floorStanding: 1,
-  floorViewing: 1,
-  zoom: 18.3,
-  bearing: -70,
-  center: {lng: -81.03735096824548, lat: 34.004175572139815},
-  room_id: undefined,
-  event_id: undefined,
-  cameraChange: false
-}
+var debouncer;
 
-// the defaults, stored within the current state, (and eventually local storage or firebase or etc)
-const defaults = JSON.parse(JSON.stringify(state))
-
-export default new Vuex.Store({
-  state: state,
+const store = new Vuex.Store({
+  state: {
+    floorStanding: 1,
+    floorViewing: 1,
+    zoom: 18.3,
+    bearing: -70,
+    center: {lng: -81.03735096824548, lat: 34.004175572139815},
+    room_id: undefined,
+    event_id: undefined,
+    resetCamera: false
+  },
   mutations: {
     set(state,payload) {
       for(var key in payload){
@@ -28,21 +23,32 @@ export default new Vuex.Store({
       }
     },
     userSet(state,payload){
+      console.log('userSet')
       this.commit('set',payload)
-      this.dispatch('used')
+      resetState()
     }
   },
   actions: {
     used() {
-      console.log('debunce',debounce)
-      _.debounce(function() {
-        console.log('i run?')
-        this.$store.dispatch('setDefaults')
-      }, 100)
-    },
-    setDefaults () {
-      console.log('resetting')
-      this.commit('set', state.defaults)
+      resetState()
     }
   }
 })
+
+export default store;
+
+// the defaults, stored within the current state, (and eventually local storage or firebase or etc)
+const defaultState = JSON.parse(JSON.stringify(store.state))
+
+
+function resetState() {
+  console.log('...')
+  clearTimeout(debouncer);
+  debouncer = setTimeout(function(){
+    console.log('!!!')
+    let s = defaultState
+    s.resetCamera = true;
+    store.commit('set', s)
+    //console.log(store)
+  },15000)
+}

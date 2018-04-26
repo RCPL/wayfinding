@@ -128,14 +128,14 @@ async function getList(reservations = 1) {
   });
 
   // just the events that are not over
-  console.group()
-  console.log('api date:', eventArray[0].date)
-  console.log('api time:', eventArray[0].time)
-  console.log('full string', `${eventArray[0].date}|${eventArray[0].time}`,)
-  console.log('iso_start:', eventArray[0].iso_start)
-  console.log('iso_end:', eventArray[0].iso_end)
-  console.log('parse iso to luxon', DateTime.fromObject(eventArray[0].iso_end))
-  console.groupEnd()
+  // console.group()
+  // console.log('api date:', eventArray[0].date)
+  // console.log('api time:', eventArray[0].time)
+  // console.log('full string', `${eventArray[0].date}|${eventArray[0].time}`,)
+  // console.log('iso_start:', eventArray[0].iso_start)
+  // console.log('iso_end:', eventArray[0].iso_end)
+  // console.log('parse iso to luxon', DateTime.fromObject(eventArray[0].iso_end))
+  // console.groupEnd()
   // eventArray = eventArray.filter(event => {
     // const end
   //   const cutoff = DateTime.fromObject(event.iso_end)

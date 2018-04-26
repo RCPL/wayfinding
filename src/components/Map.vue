@@ -25,16 +25,19 @@
       floorViewing: 'floorViewing',
       zoom: 'zoom',
       bearing: 'bearing',
-      center: 'center'
+      center: 'center',
+      resetCamera: 'resetCamera'
     }),
     watch: {
-      floorViewing: function(){
+      floorViewing() {
         this.renderFloor()
       },
-      cameraChange: function(){
-        if(state.cameraChange){
-          this.$store.commit('set',{ cameraChange: false })
-          console.log('caught camera');
+      resetCamera(e) {
+        // console.log(e)
+        // console.log('cam var',this.$store.resetCamera)
+        if(e){
+          console.log('resetting')
+          this.$store.commit('set',{ resetCamera: false })
           map.flyTo({
             duration:30000,
             zoom: this.zoom,
