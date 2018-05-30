@@ -26,6 +26,9 @@ const store = new Vuex.Store({
     userSet(state,payload){
       this.commit('set',payload)
       resetState()
+    },
+    clock(state) {
+      state.time = new Date();
     }
   },
   actions: {
@@ -52,7 +55,4 @@ function resetState() {
   },10000)
 }
 
-function updateClock() {
-  store.commit('set', {time: new Date()})
-}
-let ticktock = setInterval(updateClock, 60000);
+let ticktock = setInterval(function() { store.commit('clock') }, 60000);
