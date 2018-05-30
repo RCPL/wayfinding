@@ -14,7 +14,8 @@ const store = new Vuex.Store({
     center: {lng: -81.03730200444548, lat: 34.00414146587417},
     room_id: undefined,
     event_id: undefined,
-    defaultMode: true
+    defaultMode: true,
+    time: new Date()
   },
   mutations: {
     set(state,payload) {
@@ -38,15 +39,20 @@ export default store;
 
 // the defaults, stored within the current state, (and eventually local storage or firebase or etc)
 const defaultState = JSON.parse(JSON.stringify(store.state))
+delete defaultState.time;
 
 function resetState() {
   store.commit('set', {defaultMode:false})
   clearTimeout(debouncer);
   debouncer = setTimeout(function(){
-    console.log('!!!')
     let s = defaultState
     s.defaultMode = true;
     store.commit('set', s)
     //console.log(store)
   },10000)
 }
+
+function updateClock() {
+  store.commit('set', {time: new Date()})
+}
+let ticktock = setInterval(updateClock, 60000);

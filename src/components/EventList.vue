@@ -1,10 +1,7 @@
 <template>
   <div class="eventList">
     <div>
-      <EventItem v-for="event in now" :key="event.id" :eventData="event"/>
-    </div>
-    <div class="sub-list">
-      <EventItem v-for="event in later" :key="event.id" :eventData="event"/>
+      <EventItem v-for="event in events" :key="event.id" :eventData="event"/>
     </div>
   </div>
 </template>
@@ -23,9 +20,7 @@
       }
     },
     computed: {
-      defaultMode: function(){ return this.$store.state.defaultMode },
-      now: function(){ return this.events.filter(event => event.now)},
-      later: function(){ return this.events.filter(event => !event.now)}
+      defaultMode: function(){ return this.$store.state.defaultMode }
     },
     watch: {
       defaultMode(e){

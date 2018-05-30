@@ -1,19 +1,19 @@
 <template>
-  <section class="eventItem" @touchstart="tapped" :class="{now: eventData.now}">
+  <section class="eventItem" @touchstart="tapped" :class="{now: now}">
     <div class="times">
       <h2 class="big">
-        <span v-if="eventData.now">NOW</span>
+        <span v-if="now">NOW</span>
         <span v-else>{{eventData.time}}</span>
       </h2>
-      <h3 v-if="eventData.now" class="little">til {{eventData.endtime}}</h3>
+      <h3 v-if="now" class="little">til {{eventData.endtime}}</h3>
     </div>
 
     <div class="about">
       <h2>{{eventData.title}}</h2>
-      <h3 v-if="eventData.now">{{eventData.location}}</h3>
+      <h3 v-if="now">{{eventData.location}}</h3>
     </div>
 
-    <div class="up-or-down" v-if="(up || down) && eventData.now">
+    <div class="up-or-down" v-if="(up || down) && now">
       <span v-if="eventData.floor > 0">{{eventData.floor}}</span>
       <span v-else>G</span>
       <svg viewBox="0 0 128 96">
@@ -32,7 +32,14 @@ export default {
   props: ['eventData'],
   computed: {
     up: function() {return this.eventData.floor > this.$store.state.floorStanding},
-    down: function() {return this.eventData.floor < this.$store.state.floorStanding}
+    down: function() {return this.eventData.floor < this.$store.state.floorStanding},
+    now: function() {
+      return (
+          this.eventData.iso_start <= this.$store.state.time
+      ) && (
+          this.eventData.iso_end >= this.$store.state.time
+      )
+    }
   },
   methods: {
     tapped() {

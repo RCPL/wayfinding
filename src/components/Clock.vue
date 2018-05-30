@@ -8,26 +8,15 @@
 
 <script>
   import { DateTime } from "luxon"
-  import vueinterval from 'vue-interval/dist/VueInterval.common'
   // import Weather from './Weather'
   export default {
     name:'Clock',
-    mixins:[vueinterval],
-    // components: {Weather},
-    data() {
-      return {
-        currentTime: '[clock error]',
-        currentDate: '[date error]'
-      }
-    },
-    created() {
-        this.INTERVAL__30000$updateClock()
-    },
-    methods: {
-      INTERVAL__30000$updateClock: function(){
-        this.currentTime = DateTime.local().toFormat('h:mm a')
-        this.currentDate = DateTime.local().toFormat('cccc, MMMM d')
-        // console.log('clock updated');
+    computed: {
+      currentTime: function() {
+        return DateTime.fromJSDate(this.$store.state.time).toFormat('h:mm a')
+      },
+      currentDate: function() {
+        return DateTime.fromJSDate(this.$store.state.time).toFormat('cccc, MMMM d')
       }
     }
   }

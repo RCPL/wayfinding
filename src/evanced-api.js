@@ -118,9 +118,6 @@ async function getList(reservations = 1) {
       console.error(`no library for /${eventItem.library}/`);
     }
 
-    // boolean if the event is currently happening
-    eventItem.now = (eventItem.iso_start < (new Date()) && eventItem.iso_end > (new Date()))
-
     // eventItem.eventtypes = _.without(eventItem.eventtypes.split(', '),',',' ','  ');
     // eventItem.agegroups = _.without(eventItem.agegroups.split(', '),',','',' ','  ');
     // fake number of registrations
