@@ -24,14 +24,11 @@
     "Richland Library Coworking Center Mac Station"
   ],
   "Richland Library  Main": {
-    "Theater": {"floor":2, "id":2244},
     "Auditorium": {"floor":1, "id":1210},
     "BCR Classroom": {"floor":3, "id":3212},
-    "Children's Room": {"floor":0, "id":216},
-    "Studio 220": {"floor":2, "id":2214},
     "Career Coaching Center": {"floor":3, "id":-1},
-    "Storytime Room": {"floor":0, "id":-1},
-    "Teen Makerspace": {"floor":0, "id":-1},
+    "Children's Craft Area": {"floor":0, "id":-1},
+    "Children's Room": {"floor":0, "id":216},
     "Learning Engagement Classroom": {"floor":3, "id":-1},
     "Makerspace": {"floor":2, "id":-1},
     "Meeting Space 200": {"floor":2, "id":2226},
@@ -44,14 +41,17 @@
     "Meeting Space 208": {"floor":2, "id":2234},
     "Meeting Space 209": {"floor":2, "id":2235},
     "Meeting Space 210": {"floor":2, "id":2236},
-    "Writer's Room 211": {"floor":2, "id":2237},
     "Meeting Space 213": {"floor":2, "id":2246},
     "Meeting Space 214": {"floor":2, "id":2245},
-    "Studio 221": {"floor":2, "id":-1},
-    "Children's Craft Area": {"floor":0, "id":-1},
     "Networking Center": {"floor":3, "id":-1},
-
     "Post Production Lab": {"floor":2, "id":-1},
-    "Production Stage": {"floor":2, "id":-1}
+    "Production Stage": {"floor":2, "id":-1},
+    "Storytime Room": {"floor":0, "id":-1},
+    "Studio 220": {"floor":2, "id":2214},
+    "Studio 221": {"floor":2, "id":-1},
+    "Teen Makerspace": {"floor":0, "id":-1},
+    "Teen Gaming Room": {"floor":0, "id":-1},
+    "Theater": {"floor":2, "id":2244},
+    "Writer's Room 211": {"floor":2, "id":2237}    
   }
 }

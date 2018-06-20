@@ -1,9 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import getList from '../evanced-api'
 
 Vue.use(Vuex)
-
-var debouncer;
 
 const store = new Vuex.Store({
   state: {
@@ -15,7 +14,19 @@ const store = new Vuex.Store({
     room_id: undefined,
     event_id: undefined,
     defaultMode: true,
-    time: new Date()
+    time: new Date(),
+    events: [
+      {
+        title: "Example Event",
+        time: "3:32",
+        endtime: "6:41",
+        iso_start: new Date(),
+        iso_end: new Date('02-20-2019'),
+        location: "Main",
+        floor: 3,
+        room_id: "1234"
+      }
+    ]
   },
   mutations: {
     set(state,payload) {
@@ -29,6 +40,9 @@ const store = new Vuex.Store({
     },
     clock(state) {
       state.time = new Date();
+    },
+    eventUpdater(state) {
+      state.events = getList()
     }
   },
   actions: {
@@ -40,10 +54,16 @@ const store = new Vuex.Store({
 
 export default store;
 
-// the defaults, stored within the current state, (and eventually local storage or firebase or etc)
+// the defaults are stored in a constant variable, not accessible to other parts of the app
+// Vuex will restore defaults to state parameters on its own
+// (components computing variables from state will update automatically as the state reverts)
+// it could be connected to something like firebase later on as to not immediately interrupt state
+// but update when there's nothing else going on
 const defaultState = JSON.parse(JSON.stringify(store.state))
 delete defaultState.time;
+delete defaultState.events;
 
+var debouncer;
 function resetState() {
   store.commit('set', {defaultMode:false})
   clearTimeout(debouncer);
@@ -54,5 +74,8 @@ function resetState() {
     //console.log(store)
   },10000)
 }
+resetState();
 
+// timers
 let ticktock = setInterval(function() { store.commit('clock') }, 60000);
+let eventPlanner = setInterval(function() { store.commit('eventUpdater') }, 9000);

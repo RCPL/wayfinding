@@ -14,7 +14,6 @@
 <style lang="scss" scoped>
   section{
     background-color: yellow;
-    
     padding:0.75em;
   }
 

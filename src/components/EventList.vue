@@ -7,19 +7,12 @@
 </template>
 
 <script>
-  import getList from "../evanced-api";
-  import vueinterval from 'vue-interval/dist/VueInterval.common'
-
   import EventItem from './EventItem'
 
   export default {
     name: 'EventList',
-    data: () => {
-      return {
-        events: []
-      }
-    },
     computed: {
+      events: function(){ return this.$store.state.events },
       defaultMode: function(){ return this.$store.state.defaultMode }
     },
     watch: {
@@ -29,21 +22,7 @@
         }
       }
     },
-    mounted(){
-      console.log(this.$el)
-    },
-    mixins:[vueinterval],
     components: {EventItem},
-    methods: {
-      INTERVAL__30000$saveList: function() {
-        getList(1).then((result) => {
-          this.events = result
-        })
-      }
-    },
-    created: function() {
-      this.INTERVAL__30000$saveList()
-    }
   }
 </script>
 

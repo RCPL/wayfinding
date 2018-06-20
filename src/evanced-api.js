@@ -35,7 +35,7 @@ enddate=03-24-2018
 */
 
 import xml2js from 'xml2js'
-import { DateTime } from "luxon"
+import "moment"
 import evancedRooms from '../static/data/evancedRooms.json'
 
 const eVancedDateFormat = "cccc, LLLL d, y" //Thursday, April 26, 2018
@@ -71,36 +71,36 @@ async function getList(reservations = 1) {
     // the end date isn't set when it's the same as the start date
     eventItem.enddate = eventItem.enddate || eventItem.date;
 
-    // set start and end times for all day events to standard room hours 9am-8:45pm
-    if (eventItem.time === "All Day") {
-      eventItem.iso_start = DateTime.fromFormat(
-        eventItem.date,
-        eVancedDateFormat
-      ).set({
-        hour: 9,
-        minute: 0
-      }).toJSDate();
-      eventItem.iso_end = DateTime.fromFormat(
-        eventItem.enddate,
-        eVancedDateFormat
-      ).set({
-        hour: 20,
-        minute: 45
-      }).toJSDate();
-      eventItem.allDay = true;
+    // // set start and end times for all day events to standard room hours 9am-8:45pm
+    // if (eventItem.time === "All Day") {
+    //   eventItem.iso_start = DateTime.fromFormat(
+    //     eventItem.date,
+    //     eVancedDateFormat
+    //   ).set({
+    //     hour: 9,
+    //     minute: 0
+    //   }).toJSDate();
+    //   eventItem.iso_end = DateTime.fromFormat(
+    //     eventItem.enddate,
+    //     eVancedDateFormat
+    //   ).set({
+    //     hour: 20,
+    //     minute: 45
+    //   }).toJSDate();
+    //   eventItem.allDay = true;
 
-      // convert string datetime into a real date object
-    } else {
-      eventItem.iso_start = DateTime.fromFormat(
-        `${eventItem.date} ${eventItem.time}`,
-        `${eVancedDateFormat} ${eVancedTimeFormat}`
-      ).toJSDate();
-      eventItem.iso_end = DateTime.fromFormat(
-        `${eventItem.enddate} ${eventItem.endtime}`,
-        `${eVancedDateFormat} ${eVancedTimeFormat}`
-      ).toJSDate();
-      eventItem.allDay = false;
-    }
+    // // convert string datetime into a real date object
+    // } else {
+    //   eventItem.iso_start = DateTime.fromFormat(
+    //     `${eventItem.date} ${eventItem.time}`,
+    //     `${eVancedDateFormat} ${eVancedTimeFormat}`
+    //   ).toJSDate();
+    //   eventItem.iso_end = DateTime.fromFormat(
+    //     `${eventItem.enddate} ${eventItem.endtime}`,
+    //     `${eVancedDateFormat} ${eVancedTimeFormat}`
+    //   ).toJSDate();
+    //   eventItem.allDay = false;
+    // }
 
     // create floor number and room ID from evanced lookup object
     eventItem.floor = undefined;
@@ -123,23 +123,6 @@ async function getList(reservations = 1) {
     // fake number of registrations
     // if(eventItem.signup == 1) eventItem.signup_openings = Math.floor(Math.random()*30);
   });
-
-  // just the events that are not over
-  // console.group()
-  // console.log('api date:', eventArray[0].date)
-  // console.log('api time:', eventArray[0].time)
-  // console.log('full string', `${eventArray[0].date}|${eventArray[0].time}`,)
-  // console.log('iso_start:', eventArray[0].iso_start)
-  // console.log('iso_end:', eventArray[0].iso_end)
-  // console.log('parse iso to luxon', DateTime.fromObject(eventArray[0].iso_end))
-  // console.groupEnd()
-  // eventArray = eventArray.filter(event => {
-    // const end
-  //   const cutoff = DateTime.fromObject(event.iso_end)
-  //   const now = DateTime.local()
-    
-  //   return now >= then
-  // });
 
   eventArray = eventArray.filter(event => event.iso_end > (new Date()))
 
