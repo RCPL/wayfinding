@@ -1,5 +1,5 @@
 <template>
-  <section class="eventItem" @touchstart="tapped" :class="{now: now}">
+  <section class="eventItem" @touchstart="tapped" :class="{now: now, selected: selected}">
     <div class="times">
       <h2 class="big">
         <span v-if="now">NOW</span>
@@ -39,6 +39,9 @@ export default {
       ) && (
           this.eventData.iso_end >= this.$store.state.time
       )
+    },
+    selected: function() {
+      return this.$store.state.room_id == this.eventData.room_id
     }
   },
   methods: {
@@ -47,7 +50,6 @@ export default {
         room_id: this.eventData.room_id,
         floorViewing: this.eventData.floor
       })
-      console.log(this.$store.state)
     }
   }
 }
@@ -104,4 +106,11 @@ export default {
     background-color: rgb(14, 119, 151);
     padding:0.5em 2vw;
   }
+
+  .selected{
+    color:black;
+    background-color:lime;
+  }
+
+
 </style>

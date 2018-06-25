@@ -80,10 +80,7 @@
           },
           filter: [
             'all',
-            ['==','level_1',1],
-            ['!=','type','wall'],
-            ['!=','type','window'],
-            ['!=','type','staff']
+            ['==','show_on_init',1],
           ]
         });
 
@@ -130,6 +127,7 @@
           'escelator-down',
           'printer',
           'computer',
+          'elevator',
           'emergency-exit',
           'exit'
         ].map( icon => 
@@ -185,8 +183,8 @@
           },
           filter: [ 'all',
             ['==','level_1',1],
-            ['!=','staff',1],
-            ['>','priority', 7]
+            ['!=','staff',1]
+            // ['>','priority', 7]
           ]
         });
 
