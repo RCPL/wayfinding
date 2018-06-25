@@ -5,7 +5,7 @@
         <span v-if="now">NOW</span>
         <span v-else>{{eventData.time}}</span>
       </h2>
-      <h3 v-if="now" class="little">til {{eventData.endtime}}</h3>
+      <h3 class="little">til {{eventData.endtime}}</h3>
     </div>
 
     <div class="about">
@@ -47,6 +47,7 @@ export default {
         room_id: this.eventData.room_id,
         floorViewing: this.eventData.floor
       })
+      console.log(this.$store.state)
     }
   }
 }

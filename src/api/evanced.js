@@ -36,7 +36,7 @@ enddate=03-24-2018
 
 import xml2js from 'xml2js'
 import { DateTime } from "luxon"
-import evancedRooms from '../static/data/evancedRooms.json'
+import evancedRooms from '../../static/data/evancedRooms.json'
 
 const eVancedDateFormat = "cccc, LLLL d, y" //Thursday, April 26, 2018
 const eVancedTimeFormat = "h:mm a" //9:00 AM

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import getList from '../evanced-api'
+import getList from '../api/evanced'
 
 Vue.use(Vuex)
 
@@ -9,6 +9,7 @@ const store = new Vuex.Store({
     floorStanding: 1,
     floorViewing: 1,
     zoom: 18.3,
+    // zoom: 19.3,
     bearing: -70,
     center: {lng: -81.03730200444548, lat: 34.00414146587417},
     room_id: undefined,

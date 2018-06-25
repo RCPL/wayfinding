@@ -23,10 +23,10 @@
     </layer-tree-group>
     <layer-tree-group expanded="1" checked="Qt::PartiallyChecked" name="Blueprints">
       <customproperties/>
-      <layer-tree-layer expanded="1" providerKey="gdal" checked="Qt::Unchecked" id="floor_3_modified20180214144514730" source="/Users/wbowling/Work/digital-wayfinding/QGIS/floor-3_modified.tif" name="floor-3_modified">
+      <layer-tree-layer expanded="1" providerKey="gdal" checked="Qt::Checked" id="floor_3_modified20180214144514730" source="/Users/wbowling/Work/digital-wayfinding/QGIS/floor-3_modified.tif" name="floor-3_modified">
         <customproperties/>
       </layer-tree-layer>
-      <layer-tree-layer expanded="1" providerKey="gdal" checked="Qt::Checked" id="floor_2_modified20180214141533171" source="/Users/wbowling/Work/digital-wayfinding/QGIS/floor-2_modified.tif" name="floor-2_modified">
+      <layer-tree-layer expanded="1" providerKey="gdal" checked="Qt::Unchecked" id="floor_2_modified20180214141533171" source="/Users/wbowling/Work/digital-wayfinding/QGIS/floor-2_modified.tif" name="floor-2_modified">
         <customproperties/>
       </layer-tree-layer>
       <layer-tree-layer expanded="1" providerKey="gdal" checked="Qt::Unchecked" id="floor_1_modified20180214140446342" source="/Users/wbowling/Work/digital-wayfinding/QGIS/floor-1_modified.tif" name="floor-1_modified">
@@ -50,10 +50,10 @@
   <mapcanvas>
     <units>meters</units>
     <extent>
-      <xmin>-9021035.14953539334237576</xmin>
-      <ymin>4029320.84105983702465892</ymin>
-      <xmax>-9021019.45205698348581791</xmax>
-      <ymax>4029340.47698841104283929</ymax>
+      <xmin>-9021060.53925147093832493</xmin>
+      <ymin>4029331.52863239357247949</ymin>
+      <xmax>-9021009.68400640226900578</xmax>
+      <ymax>4029396.71920921141281724</ymax>
     </extent>
     <rotation>110</rotation>
     <projections>1</projections>
@@ -125,14 +125,14 @@
     </legendlayer>
     <legendgroup open="false" checked="Qt::Unchecked" name="Level 0"/>
     <legendgroup open="true" checked="Qt::PartiallyChecked" name="Blueprints">
-      <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="floor-3_modified" showFeatureCount="0">
+      <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="floor-3_modified" showFeatureCount="0">
         <filegroup open="true" hidden="false">
-          <legendlayerfile isInOverview="0" layerid="floor_3_modified20180214144514730" visible="0"/>
+          <legendlayerfile isInOverview="0" layerid="floor_3_modified20180214144514730" visible="1"/>
         </filegroup>
       </legendlayer>
-      <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="floor-2_modified" showFeatureCount="0">
+      <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="floor-2_modified" showFeatureCount="0">
         <filegroup open="true" hidden="false">
-          <legendlayerfile isInOverview="0" layerid="floor_2_modified20180214141533171" visible="1"/>
+          <legendlayerfile isInOverview="0" layerid="floor_2_modified20180214141533171" visible="0"/>
         </filegroup>
       </legendlayer>
       <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="floor-1_modified" showFeatureCount="0">
@@ -1046,13 +1046,13 @@ def my_form_open(dialog, layer, feature):
       </edittypes>
       <renderer-v2 forceraster="0" symbollevels="0" type="RuleRenderer" enableorderby="0">
         <rules key="{4d3a7ea8-fd37-41c3-8c62-2272d6f86aac}">
-          <rule checkstate="0" filter="level_3 LIKE 1" key="{92063696-7af6-4c0c-a333-5c6c089fa8cf}" symbol="0" label="Level 3">
+          <rule filter="level_3 LIKE 1" key="{92063696-7af6-4c0c-a333-5c6c089fa8cf}" symbol="0" label="Level 3">
             <rule filter="type like 'wall'" key="{85b0e102-6655-45f7-bb5f-a284923994a1}" symbol="1" label="wall"/>
             <rule filter="type like 'window'" key="{9fa238f4-de3c-44c7-afc2-ba360eefbed9}" symbol="2" label="window"/>
             <rule filter="type LIKE 'room'" key="{abec1d39-b3ee-4bf3-8158-cc95c6cd19e7}" symbol="3" label="room"/>
             <rule filter="type LIKE 'studio'" key="{8e7e30fe-0fe4-445a-8abe-ca9ce19b108c}" symbol="4" label="Studio"/>
           </rule>
-          <rule filter="level_2 LIKE 1" key="{6549bdc9-8318-4d22-b62a-81890210f94f}" symbol="5" label="Level 2">
+          <rule checkstate="0" filter="level_2 LIKE 1" key="{6549bdc9-8318-4d22-b62a-81890210f94f}" symbol="5" label="Level 2">
             <rule filter="type like 'wall'" key="{3d232c5e-be41-4d1d-911c-077e99f46d18}" symbol="6" label="wall"/>
             <rule filter="type like 'window'" key="{43ef6ab0-c59c-4cfb-940e-bf045b34baf9}" symbol="7" label="window"/>
             <rule filter="type LIKE 'room'" key="{de7b2749-d172-4cad-8550-2603b3f2099a}" symbol="8" label="room"/>

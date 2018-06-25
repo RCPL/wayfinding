@@ -10,7 +10,6 @@
 </template>
 
 <script>
-  import FloorMaps from './components/FloorMaps'
   // import Spaces from './components/Spaces'
 	import UnderConstruction from './components/UnderConstruction'
 	import EventList from './components/EventList'
@@ -20,7 +19,6 @@
   export default {
 		name: 'App',
     components: {
-      FloorMaps,
 			UnderConstruction,
 			EventList,
 			Clock,

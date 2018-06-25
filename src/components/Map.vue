@@ -23,12 +23,16 @@
       // defaultFloor: state => state.defaults.floor,
       floorStanding: 'floorStanding',
       floorViewing: 'floorViewing',
+      room_id: 'room_id',
       zoom: 'zoom',
       bearing: 'bearing',
       center: 'center',
       defaultMode: 'defaultMode'
     }),
     watch: {
+      room_id() {
+        this.renderFloor()
+      },
       floorViewing() {
         this.renderFloor()
       },
@@ -68,10 +72,11 @@
 
         map.addLayer({
           'id': 'areas',
+          'minzoom': 17,
           'type': 'fill',
           'source': 'indoorPolygons',
           'paint': {
-            'fill-color': 'rgb(194, 202, 186)'
+            'fill-color': 'rgb(194, 202, 86)'
           },
           filter: [
             'all',
@@ -84,10 +89,11 @@
 
         map.addLayer({
           'id': 'walls',
+          'minzoom': 17,
           'type': 'fill-extrusion',
           'source': 'indoorPolygons',
           'paint': {
-            'fill-extrusion-color': 'rgb(180,180,180)',
+            'fill-extrusion-color': 'rgb(210,210,210)',
             'fill-extrusion-height': 1,
           },
           filter: [
@@ -103,6 +109,7 @@
 
         map.addLayer({
           'id': 'windows',
+          'minzoom': 18.5,
           'type': 'fill-extrusion',
           'source': 'indoorPolygons',
           'paint': {
@@ -117,30 +124,77 @@
           ]
         });
 
+        [
+          'stairs',
+          'escelator-up',
+          'escelator-down',
+          'printer',
+          'computer',
+          'emergency-exit',
+          'exit'
+        ].map( icon => 
+          map.loadImage(`/static/img/${icon}.png`, function(error, image) {
+            if (error) throw error;
+            map.addImage(icon, image);
+          })  
+        )
+
         map.addLayer({
           'id': 'labels',
           'type': 'symbol',
           'source': 'indoorLabels',
+          'minzoom': 18,
           'layout': {
-            'text-field': '{label}',
+            // 'text-optional': true,
+            'text-field': `{label}`,
             // "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-            // "text-offset": [0, 0.6],
-            "text-anchor": "top"
+            'text-size': 12,
+            // "text-offset": [0, 0.1],
+            'text-anchor': 'top',
+            
+            // 'icon-optional': false,
+            'icon-ignore-placement': true,
+            'icon-size': 0.75,
+            'icon-anchor': 'bottom',
+            'icon-image': '{symbol}',
+
+            // 'visibility': ['case'
+            //   ['>', ['get','priority'], 18], 'visible',
+            //   'none'
+            // ]
           },
           'paint': {
-            'text-color': 'black'
+            'text-color': 'black',
+            'text-halo-color': 'white',
+            'text-halo-width': 2,
+
+            'icon-halo-color': 'white',
+            'icon-halo-width': 2
+
+            // 'text-opacity': [
+            //   'interpolate', ['linear'], 'zoom',
+            //   ['>', ['zoom'], ['to-number',['get','priority']]],
+            //   1.0
+            // ]
+
+            // 'text-opacity': [
+            //   'interpolate', ['linear'], 'zoom',
+            //   ['>', ['zoom'], ['to-number',['get','priority']]],
+            //   1.0
+            // ]
           },
           filter: [ 'all',
             ['==','level_1',1],
-            ['!=','staff',1]
+            ['!=','staff',1],
+            ['>','priority', 7]
           ]
         });
 
-      var mkr = document.createElement('div');
-      mkr.className = 'marker you-are-here'
-      var youAreHere = new mapboxgl.Marker(mkr)
-        .setLngLat([-81.03723837967836, 34.00443466613849])
-        .addTo(map);
+        var mkr = document.createElement('div');
+        mkr.className = 'marker you-are-here'
+        var youAreHere = new mapboxgl.Marker(mkr)
+                            .setLngLat([-81.03723837967836, 34.00443466613849])
+                            .addTo(map);
       });
 
       map.on('touchend', () => {
@@ -168,7 +222,7 @@
             ['!=','type','window'],
             ['!=','type','staff']
           ],
-          ['!=','room_id','null']
+          ['==','room_id',this.room_id]
         ]);
 
         map.setFilter('walls',
