@@ -27,7 +27,8 @@
     }
   }
 
-  setTimeout("location.reload(true);",20*60*1000); 
+	// reset the whole app
+  //setTimeout("location.reload(true);",60*60*1000); 
 </script>
 
 <style lang="scss">

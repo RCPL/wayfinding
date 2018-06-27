@@ -23,6 +23,7 @@
       // defaultFloor: state => state.defaults.floor,
       floorStanding: 'floorStanding',
       floorViewing: 'floorViewing',
+      you: 'you',
       room_id: 'room_id',
       zoom: 'zoom',
       bearing: 'bearing',
@@ -43,7 +44,7 @@
             zoom: this.zoom,
             center: this.center,
             bearing: this.bearing,
-            pitch: 25
+            
           })
         }
       }
@@ -55,7 +56,7 @@
           zoom: this.zoom,
           center: this.center,
           bearing: this.bearing,
-          pitch:25
+          pitch:45
       });
 
       map.on('load', function () {
@@ -76,7 +77,7 @@
           'type': 'fill',
           'source': 'indoorPolygons',
           'paint': {
-            'fill-color': 'rgb(194, 202, 86)'
+            'fill-color': 'rgb(171, 240, 81)'
           },
           filter: [
             'all',
@@ -86,12 +87,12 @@
 
         map.addLayer({
           'id': 'walls',
-          'minzoom': 17,
+          'minzoom': 16,
           'type': 'fill-extrusion',
           'source': 'indoorPolygons',
           'paint': {
             'fill-extrusion-color': 'rgb(210,210,210)',
-            'fill-extrusion-height': 1,
+            'fill-extrusion-height': 0.5,
           },
           filter: [
             'all',
@@ -106,13 +107,13 @@
 
         map.addLayer({
           'id': 'windows',
-          'minzoom': 18.5,
+          'minzoom': 17,
           'type': 'fill-extrusion',
           'source': 'indoorPolygons',
           'paint': {
-            'fill-extrusion-color': 'rgb(200,255,220)',
-            'fill-extrusion-height': 2,
-            'fill-extrusion-opacity': 0.4
+            'fill-extrusion-color': 'rgb(200,245,220)',
+            'fill-extrusion-height': 1,
+            'fill-extrusion-opacity': 0.6
           },
           filter: [
             'all',
@@ -143,7 +144,7 @@
           'source': 'indoorLabels',
           'minzoom': 18,
           'layout': {
-            // 'text-optional': true,
+            'text-optional': true,
             'text-field': `{label}`,
             // "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
             'text-size': 12,
@@ -191,7 +192,7 @@
         var mkr = document.createElement('div');
         mkr.className = 'marker you-are-here'
         var youAreHere = new mapboxgl.Marker(mkr)
-                            .setLngLat([-81.03723837967836, 34.00443466613849])
+                            .setLngLat({lng: -81.0374490827052, lat: 34.00425027521804})
                             .addTo(map);
       });
 

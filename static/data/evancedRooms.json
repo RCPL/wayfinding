@@ -29,11 +29,11 @@
     "BCR Classroom": {"floor":3, "id":3212},
     "Children's Room": {"floor":0, "id":216},
     "Studio 220": {"floor":2, "id":2214},
-    "Career Coaching Center": {"floor":3, "id":-1},
-    "Storytime Room": {"floor":0, "id":-1},
-    "Teen Makerspace": {"floor":0, "id":-1},
-    "Learning Engagement Classroom": {"floor":3, "id":-1},
-    "Makerspace": {"floor":2, "id":-1},
+    "Career Coaching Center": {"floor":3, "id":3213},
+    "Storytime Room": {"floor":0, "id":216},
+    "Teen Makerspace": {"floor":0, "id":231},
+    "Learning Engagement Classroom": {"floor":3, "id":3212},
+    "Makerspace": {"floor":2, "id":2243},
     "Meeting Space 200": {"floor":2, "id":2226},
     "Meeting Space 201": {"floor":2, "id":2227},
     "Meeting Space 202": {"floor":2, "id":2228},
@@ -47,11 +47,11 @@
     "Writer's Room 211": {"floor":2, "id":2237},
     "Meeting Space 213": {"floor":2, "id":2246},
     "Meeting Space 214": {"floor":2, "id":2245},
-    "Studio 221": {"floor":2, "id":-1},
+    "Studio 221": {"floor":2, "id":2214},
     "Children's Craft Area": {"floor":0, "id":-1},
-    "Networking Center": {"floor":3, "id":-1},
+    "Networking Center": {"floor":3, "id":3218},
 
-    "Post Production Lab": {"floor":2, "id":-1},
-    "Production Stage": {"floor":2, "id":-1}
+    "Post Production Lab": {"floor":2, "id":2138},
+    "Production Stage": {"floor":2, "id":2242}
   }
 }

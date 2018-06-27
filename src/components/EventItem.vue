@@ -46,6 +46,7 @@ export default {
   },
   methods: {
     tapped() {
+      console.log(this.eventData)
       this.$store.commit('userSet',{
         room_id: this.eventData.room_id,
         floorViewing: this.eventData.floor
@@ -109,7 +110,7 @@ export default {
 
   .selected{
     color:black;
-    background-color:lime;
+    background-color:rgb(171, 240, 81);
   }
 
 
